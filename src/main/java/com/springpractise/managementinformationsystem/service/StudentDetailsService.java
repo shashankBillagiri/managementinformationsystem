@@ -20,4 +20,16 @@ public class StudentDetailsService {
         return studentDetails;
     }
 
+    public List<StudentDetails> createNewStudent(List<StudentDetails> newStudents) {
+        return studentDetailsRepository.saveAll(newStudents);
+    }
+
+
+    public  StudentDetails  getStudentByID(Long id){
+        Integer id1 = Math.toIntExact(id);
+        StudentDetails studentDetails = studentDetailsRepository.findById(id1).get();
+        return studentDetails;
+
+    }
+
 }

@@ -1,24 +1,21 @@
 package com.springpractise.managementinformationsystem.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Data
-@ToString
 @Entity
 @Table(name = "student_details")
-@NoArgsConstructor
-@AllArgsConstructor
-public class StudentDetails {
+public class StudentDetails implements Serializable {
+    private static final long serialVersionUID = 1234567L;
 
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -54,6 +51,7 @@ public class StudentDetails {
     private String course;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "StudentiD")
     private long studentId;
 

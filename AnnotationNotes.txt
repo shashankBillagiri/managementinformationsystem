@@ -1,0 +1,17 @@
+1) @pathvariable vs @requestparam
+
+a) @RequestParam and @PathVariable can both be used to extract values from the request URI, but they are a bit different.
+b) @RequestParams extract values from the query string, @PathVariables extract values from the URI path
+example: http://localhost:8080/v1/mis/getstudentdetailsByStudentID?StudentId=700701  (Using @requestparam)
+         http://localhost:8080/v1/mis/getstudentdetailsByStudentID/700701            (Using @pathvariable)
+
+ c) Because @PathVariable is extracting values from the URI path, it’s not encoded. On the other hand, @RequestParam is encoded.
+ http://localhost:8080/v1/mis/getstudentdetailsByStudentID?StudentId=70070+1 (encodes the student ID to 700701)
+ http://localhost:8080/v1/mis/getstudentdetailsByStudentID/70070+1 (Treats studentID as 70070+1)
+
+d) Both @RequestParam and @PathVariable can be optional.
+     @PathVariable(required = false)
+     @RequestParam(required = false)
+
+
+
