@@ -51,7 +51,7 @@ public class StudentDetails implements Serializable {
     private String course;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "StudentiD")
     private long studentId;
 

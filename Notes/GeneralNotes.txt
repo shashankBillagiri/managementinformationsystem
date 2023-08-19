@@ -1,0 +1,12 @@
+1)REST - Representational State Transfer.
+2) The Java Management Extensions (JMX) API is a standard —developed through the Java Community Process (JCP) as JSR 3—for
+managing and monitoring applications and services.
+3) EAFP(Easier to Ask Forgiveness Than Permission) vs LBYL(look before you leap)
+     EAFP - Handling Exceptions
+     LBYL - manually writing all the logic approach to handle the Exceptions.
+
+---------------------------------------------------------------------------------
+1) Serializable
+2) Springboot Actuator
+30 Model VS Entity
+
