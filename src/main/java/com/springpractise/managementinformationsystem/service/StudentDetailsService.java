@@ -20,8 +20,13 @@ public class StudentDetailsService {
         return studentDetails;
     }
 
-    public List<StudentDetails> createNewStudent(List<StudentDetails> newStudents) {
+
+    public List<StudentDetails> createNewStudents(List<StudentDetails> newStudents) {
         return studentDetailsRepository.saveAll(newStudents);
+    }
+
+    public StudentDetails createNewStudent(StudentDetails newStudent) {
+        return studentDetailsRepository.save(newStudent);
     }
 
 

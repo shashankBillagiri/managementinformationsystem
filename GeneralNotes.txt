@@ -1,2 +1,0 @@
-1)REST - Representational State Transfer.
-2) Serializable

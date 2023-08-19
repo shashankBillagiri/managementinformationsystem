@@ -1,0 +1,61 @@
+1) @pathvariable vs @requestparam
+
+a) @RequestParam and @PathVariable can both be used to extract values from the request URI, but they are a bit different.
+b) @RequestParams extract values from the query string, @PathVariables extract values from the URI path
+example: http://localhost:8080/v1/mis/getstudentdetailsByStudentID?StudentId=700701  (Using @requestparam)
+         http://localhost:8080/v1/mis/getstudentdetailsByStudentID/700701            (Using @pathvariable)
+
+ c) Because @PathVariable is extracting values from the URI path, it’s not encoded. On the other hand, @RequestParam is encoded.
+ http://localhost:8080/v1/mis/getstudentdetailsByStudentID?StudentId=70070+1 (encodes the student ID to 700701)
+ http://localhost:8080/v1/mis/getstudentdetailsByStudentID/70070+1 (Treats studentID as 70070+1)
+
+d) Both @RequestParam and @PathVariable can be optional.
+     @PathVariable(required = false)
+     @RequestParam(required = false)
+
+------------------------------------------------------------------------------------------------------------------------
+
+2) @RestController vs @Controller
+
+   a) @RestController = @Controller + @ResponseBody - which eliminates the need to annotate every request handling method of the controller
+                 class with the @ResponseBody annotation
+   b) We typically use @Controller in combination with a @RequestMapping annotation for request handling methods.
+   The @Controller is a common annotation that is used to mark a class as Spring MVC Controller
+   We can annotate classic controllers with the @Controller annotation. This is simply a specialization of the @Component class,
+   which allows us to auto-detect implementation classes through the classpath scanning.
+   c) @ResponseBody - This annotation enables automatic serialization of the return object into the HttpResponse.
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+3) @Component
+
+   @Component is an annotation that allows Spring to detect our custom beans automatically.
+
+   In other words, without having to write any explicit code, Spring will:
+
+    Scan our application for classes annotated with @Component
+    Instantiate them and inject any specified dependencies into them
+    Inject them wherever needed
+
+  Spring has provided a few specialized stereotype annotations: @Controller, @Service and @Repository.
+  They all provide the same function as @Component.
+  They all act the same because they are all composed annotations with @Component as a meta-annotation for each of them.
+  They are like @Component aliases with specialized uses and meaning outside Spring auto-detection or dependency injection.
+
+   ---------------------------------------------------------------------------------------------------------------------------
+ 4) @ComponentScan
+
+
+
+ ----------------------------------------------------------------------------------------------------------------------------
+ 5)  @Component vs @Bean
+
+
+ ---------------------------------------------------------------------------------------------------------------------------
+
+ 6) @Configuration
+
+
+
+ -----------------------------------------------------------------------------------------------------------------------------
+7)  @Autowired
