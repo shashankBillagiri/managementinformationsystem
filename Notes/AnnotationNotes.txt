@@ -25,7 +25,6 @@ d) Both @RequestParam and @PathVariable can be optional.
    which allows us to auto-detect implementation classes through the classpath scanning.
    c) @ResponseBody - This annotation enables automatic serialization of the return object into the HttpResponse.
 
-
 -------------------------------------------------------------------------------------------------------------------------------
 3) @Component
 
@@ -59,3 +58,8 @@ d) Both @RequestParam and @PathVariable can be optional.
 
  -----------------------------------------------------------------------------------------------------------------------------
 7)  @Autowired
+
+
+
+-----------------------------------------------------------------------------------------------------
+8) @Data
