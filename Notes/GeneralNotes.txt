@@ -8,5 +8,12 @@ managing and monitoring applications and services.
 ---------------------------------------------------------------------------------
 1) Serializable
 2) Springboot Actuator
-30 Model VS Entity
+3) Model(DTO) VS Entity
+4) Truncate a table: removes all rows from a table,
+ but the table structure and its columns, constraints, indexes, and so on remain.
+ 5) DDL - Data Definition Logic -  CREATE, DROP, RENAME, ALTER etc.
+    DML - Data Manipulation Logic -  UPDATE, INSERT, MERGE etc.
+
+ 6) Hibernate Vs JPA
+
 
