@@ -30,11 +30,21 @@ public class StudentDetailsService {
     }
 
 
-    public  StudentDetails  getStudentByID(Long id){
+    public  StudentDetails getStudentByStudentID(Long id){
         Integer id1 = Math.toIntExact(id);
         StudentDetails studentDetails = studentDetailsRepository.findById(id1).get();
         return studentDetails;
+    }
 
+    public  int getStudentById(Long id){
+        Integer id1 = Math.toIntExact(id);
+        int count = studentDetailsRepository.findByid(id1).size();
+        return count;
+    }
+
+    public  List<StudentDetails> getStudentByFirstName(String firstName){
+        List<StudentDetails> studentDetails = studentDetailsRepository.findByFirstName(firstName);
+        return studentDetails;
     }
 
 }

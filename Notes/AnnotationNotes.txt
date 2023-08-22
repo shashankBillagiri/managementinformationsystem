@@ -63,3 +63,35 @@ d) Both @RequestParam and @PathVariable can be optional.
 
 -----------------------------------------------------------------------------------------------------
 8) @Data
+
+
+-----------------------------------------------------------------------------------------------------
+9)  @Override
+
+
+
+-------------------------------------------------------------------------------------------------------
+10) @SneakyThrows
+
+
+------------------------------------------------------------------------------------------------------
+Model Annotations:
+
+a) Request Model:
+
+    @AllArgsConstructor
+    @Builder
+    @Data
+    @NoArgsConstructor
+
+
+b) Response Model:
+     @ApiModel(value = "", description = "")
+     @AllArgsConstructor
+     @Builder
+     @Data
+     @NoArgsConstructor
+
+ c) When do we use this @RequiredArgsConstructor?
+
+ d)  what is this @EqualsAndHashCode(callSuper=false)?

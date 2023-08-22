@@ -1,0 +1,6 @@
+1) Truncate a table: removes all rows from a table,
+ but the table structure and its columns, constraints, indexes, and so on remain.
+ ex: TRUNCATE TABLE student.student_details;
+
+ 2) DDL - Data Definition Logic -  CREATE, DROP, RENAME, ALTER etc.
+    DML - Data Manipulation Logic -  UPDATE, INSERT, MERGE,DELETE etc.
