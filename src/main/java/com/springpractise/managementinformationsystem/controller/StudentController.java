@@ -18,7 +18,6 @@ public class StudentController {
     private StudentDetailsService studentDetailsService;
 
 
-
     @GetMapping(value = "/studentdetails")
     public List<StudentDetails> getStudentDetails() {
         return studentDetailsService.getStudentDetails();
@@ -43,7 +42,15 @@ public class StudentController {
 
     // to create Multiple or single Records in a single Request.
     @PostMapping(value = "/newstudents")
-    public List<StudentDetails> createNewStudents(@RequestBody List<StudentDetails> newStudents) {
+    public List<StudentDetails> createNewStudents(@RequestBody List<StudentDetails> newStudents) throws BadRequestException {
+
+        for (StudentDetails  newStudent:newStudents) {
+            if (studentDetailsService.getStudentById(newStudent.getId())>0){
+
+                throw new BadRequestException(DUPLICATE_ID);
+            }
+
+        }
         return studentDetailsService.createNewStudents(newStudents);
 
     }
@@ -51,7 +58,11 @@ public class StudentController {
     @PostMapping(value = "/newstudent")
     public StudentDetails createNewStudent(@RequestBody StudentDetails newStudent) {
         if (studentDetailsService.getStudentById(newStudent.getId())>0){
-            throw new BadRequestException(DUPLICATE_ID);
+            try {
+                throw new BadRequestException(DUPLICATE_ID);
+            } catch (BadRequestException e) {
+                e.printStackTrace();
+            }
         }
 
         return studentDetailsService.createNewStudent(newStudent);
