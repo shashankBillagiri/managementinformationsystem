@@ -3,6 +3,7 @@ package com.springpractise.managementinformationsystem.controller;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.exception.BadRequestException;
 import com.springpractise.managementinformationsystem.service.StudentDetailsService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,14 +56,13 @@ public class StudentController {
 
     }
 
+
+   // Using @Sneaky throws instead of using Throws in Method Signature
+    @SneakyThrows
     @PostMapping(value = "/newstudent")
     public StudentDetails createNewStudent(@RequestBody StudentDetails newStudent) {
         if (studentDetailsService.getStudentById(newStudent.getId())>0){
-            try {
                 throw new BadRequestException(DUPLICATE_ID);
-            } catch (BadRequestException e) {
-                e.printStackTrace();
-            }
         }
 
         return studentDetailsService.createNewStudent(newStudent);
