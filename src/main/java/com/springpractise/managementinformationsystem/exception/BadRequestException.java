@@ -5,11 +5,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BadRequestException extends RuntimeException {
+public class BadRequestException extends Exception {
 
 
     public BadRequestException(String message){
         super(message);
+    }
+
+    public BadRequestException(String message, Throwable err){
+        super(message,err);
+    }
+
+    public BadRequestException(String message, int Id){
+
     }
 
 }
