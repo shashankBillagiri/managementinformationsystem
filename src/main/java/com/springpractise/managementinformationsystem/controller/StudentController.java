@@ -6,6 +6,8 @@ import com.springpractise.managementinformationsystem.exception.BadRequestExcept
 import com.springpractise.managementinformationsystem.service.StudentDetailsService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,32 +21,33 @@ public class StudentController {
     @Autowired
     private StudentDetailsService studentDetailsService;
 
-
-    @GetMapping(value = "/studentdetails")
-    public List<StudentDetails> getStudentDetails() {
-        return studentDetailsService.getStudentDetails();
+    // Get All  studentdetails
+    @GetMapping(value = "/getAllstudentdetails")
+    public ResponseEntity<List<StudentDetails>> getStudentDetails() {
+        return ResponseEntity.ok(studentDetailsService.getStudentDetails());
     }
 
+    // Get studentdetails by studentID
     @GetMapping(value = "/getstudentdetailsByStudentID",produces = "application/json")
-    public StudentDetails getStudentDetails(@RequestParam(required = false) Long StudentId) {
-        return studentDetailsService.getStudentByStudentID(StudentId);
+    public ResponseEntity<StudentDetails> getStudentDetails(@RequestParam(required = false) Long StudentId) {
+        return ResponseEntity.ok(studentDetailsService.getStudentByStudentID(StudentId));
     }
 
     // Implementing the same as above using pathvariable.
     @GetMapping(value = "/getstudentdetailsByStudentID/{StudentId}")
-    public StudentDetails getStudentDetailss(@PathVariable Long StudentId) {
-        return studentDetailsService.getStudentByStudentID(StudentId);
+    public ResponseEntity<StudentDetails> getStudentDetailss(@PathVariable Long StudentId) {
+        return ResponseEntity.ok(studentDetailsService.getStudentByStudentID(StudentId));
     }
 
-
+    //Get studentdetails by First name
     @GetMapping(value = "/getstudentdetailsByFirstName",produces = "application/json")
-    public List<StudentDetails> getStudentDetailsByFirstName(@RequestParam(required = false) String firstName) {
-        return studentDetailsService.getStudentByFirstName(firstName);
+    public ResponseEntity<List<StudentDetails>> getStudentDetailsByFirstName(@RequestParam(required = false) String firstName) {
+        return  ResponseEntity.ok(studentDetailsService.getStudentByFirstName(firstName));
     }
 
     // to create Multiple or single Records in a single Request.
     @PostMapping(value = "/newstudents")
-    public List<StudentDetails> createNewStudents(@RequestBody List<StudentDetails> newStudents) throws BadRequestException {
+    public ResponseEntity<List<StudentDetails>> createNewStudents(@RequestBody List<StudentDetails> newStudents) throws BadRequestException {
 
         for (StudentDetails  newStudent:newStudents) {
             if (studentDetailsService.getStudentById(newStudent.getId())>0){
@@ -53,7 +56,7 @@ public class StudentController {
             }
 
         }
-        return studentDetailsService.createNewStudents(newStudents);
+        return new ResponseEntity<>(studentDetailsService.createNewStudents(newStudents), HttpStatus.CREATED);
 
     }
 
@@ -61,13 +64,13 @@ public class StudentController {
  /*  Using @Sneaky throws inplace  of using Throws in Method Signature,
     Using dto Request Object inplace of directly using Entity*/
     @SneakyThrows
-    @PostMapping(value = "/newstudent")
-    public StudentDetails createNewStudent(@RequestBody NewStudent newStudent) {
+    @PostMapping("/newstudent")
+    public ResponseEntity<StudentDetails> createNewStudent(@RequestBody NewStudent newStudent) {
         if (studentDetailsService.getStudentById(newStudent.getId())>0){
                 throw new BadRequestException(DUPLICATE_ID);
         }
 
-        return studentDetailsService.createNewStudent(newStudent);
+        return new ResponseEntity<>(studentDetailsService.createNewStudent(newStudent), HttpStatus.CREATED);
 
     }
 }
