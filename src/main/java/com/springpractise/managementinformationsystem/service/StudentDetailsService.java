@@ -1,5 +1,6 @@
 package com.springpractise.managementinformationsystem.service;
 
+import com.springpractise.managementinformationsystem.dto.NewStudent;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,10 @@ public class StudentDetailsService {
         return studentDetailsRepository.saveAll(newStudents);
     }
 
-    public StudentDetails createNewStudent(StudentDetails newStudent) {
-        return studentDetailsRepository.save(newStudent);
+    public StudentDetails createNewStudent(NewStudent newStudent) {
+        StudentDetails studentDetails = StudentDetails
+                .build(newStudent.getId(), newStudent.getFirstName(), newStudent.getLastName(), newStudent.getGender(), newStudent.getEmail(), newStudent.getContactNumber(), newStudent.getAddressLine1(), newStudent.getAddressLine2(), newStudent.getAddressLine3(), newStudent.getState(), newStudent.getZipcode(), newStudent.getCourse(),0 ,newStudent.getDateOfJoining() );
+        return studentDetailsRepository.save(studentDetails);
     }
 
 
