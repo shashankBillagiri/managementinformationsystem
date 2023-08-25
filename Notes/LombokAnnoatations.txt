@@ -1,0 +1,39 @@
+
+@Data
+@AllArgsConstructor(staticName = "build")
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
+
+
+
+@Builder
+
+
+
+@SneakyThrows
+
+
+
+@EqualsAndHashCode(callSuper=false)?
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Model Annotations:
+
+a) Request Model:
+
+    @AllArgsConstructor
+    @Builder
+    @Data
+    @NoArgsConstructor
+
+
+b) Response Model:
+     @ApiModel(value = "", description = "")
+     @AllArgsConstructor
+     @Builder
+     @Data
+     @NoArgsConstructor

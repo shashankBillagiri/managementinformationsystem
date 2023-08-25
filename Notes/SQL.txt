@@ -2,5 +2,8 @@
  but the table structure and its columns, constraints, indexes, and so on remain.
  ex: TRUNCATE TABLE student.student_details;
 
- 2) DDL - Data Definition Logic -  CREATE, DROP, RENAME, ALTER etc.
+ 2) DDL - Data Definition Logic -  CREATE, DROP, RENAME, ALTER, TRUNCATE.
     DML - Data Manipulation Logic -  UPDATE, INSERT, MERGE,DELETE etc.
+    DCL- Data Control Language - Grant, Revoke
+    TCL - Transaction Control Language - Commit, Rollback, SavePoint, Set Transaction, Set Constraints
+    DQL - Data Query Language - Select

@@ -1,5 +1,6 @@
 package com.springpractise.managementinformationsystem.controller;
 
+import com.springpractise.managementinformationsystem.dto.NewStudent;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.exception.BadRequestException;
 import com.springpractise.managementinformationsystem.service.StudentDetailsService;
@@ -57,10 +58,11 @@ public class StudentController {
     }
 
 
-   // Using @Sneaky throws instead of using Throws in Method Signature
+ /*  Using @Sneaky throws inplace  of using Throws in Method Signature,
+    Using dto Request Object inplace of directly using Entity*/
     @SneakyThrows
     @PostMapping(value = "/newstudent")
-    public StudentDetails createNewStudent(@RequestBody StudentDetails newStudent) {
+    public StudentDetails createNewStudent(@RequestBody NewStudent newStudent) {
         if (studentDetailsService.getStudentById(newStudent.getId())>0){
                 throw new BadRequestException(DUPLICATE_ID);
         }
