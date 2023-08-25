@@ -27,6 +27,9 @@ public class StudentDetails implements Serializable {
     @Column(name = "gender", nullable = true)
     private String gender;
 
+    @Column(name = "age")
+    private Long age;
+
     @Column(name = "email", columnDefinition = "varchar(30)")
     private String email;
 
