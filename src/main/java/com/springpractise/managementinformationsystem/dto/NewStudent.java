@@ -1,6 +1,10 @@
 package com.springpractise.managementinformationsystem.dto;
 
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +16,22 @@ public class NewStudent {
 
     private Long id;
 
+    @NotBlank(message = "first name cannot be empty or null")
     private String firstName;
 
+    @NotBlank(message = "last name cannot be empty or null")
     private String lastName;
 
     private String gender;
 
+    @Min(18)
+    @Max(60)
+    private Long age;
+
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Please enter a Valid email")
     private String email;
 
+    @Pattern(regexp = "^\\d{10}$", message = "Please enter a Valid Contact Number, A Valid Contact number should be 10 digits")
     private String contactNumber;
 
     private String addressLine1;

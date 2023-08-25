@@ -28,7 +28,7 @@ public class StudentDetailsService {
 
     public StudentDetails createNewStudent(NewStudent newStudent) {
         StudentDetails studentDetails = StudentDetails
-                .build(newStudent.getId(), newStudent.getFirstName(), newStudent.getLastName(), newStudent.getGender(), newStudent.getEmail(), newStudent.getContactNumber(), newStudent.getAddressLine1(), newStudent.getAddressLine2(), newStudent.getAddressLine3(), newStudent.getState(), newStudent.getZipcode(), newStudent.getCourse(),0 ,newStudent.getDateOfJoining() );
+                .build(newStudent.getId(), newStudent.getFirstName(), newStudent.getLastName(), newStudent.getGender(),newStudent.getAge(), newStudent.getEmail(), newStudent.getContactNumber(), newStudent.getAddressLine1(), newStudent.getAddressLine2(), newStudent.getAddressLine3(), newStudent.getState(), newStudent.getZipcode(), newStudent.getCourse(),0 ,newStudent.getDateOfJoining() );
         return studentDetailsRepository.save(studentDetails);
     }
 
