@@ -51,7 +51,7 @@ public class StudentController {
             return  ResponseEntity.ok(studentsByFirstName);
         }
 
-       throw new StudentsNotFoundException(STUDENTS_DO_NOT_EXIST +firstName);
+       throw new StudentsNotFoundException(String.format(STUDENTS_DO_NOT_EXIST,firstName));
     }
 
     // to create Multiple or single Records in a single Request.
@@ -61,7 +61,7 @@ public class StudentController {
         for (StudentDetails  newStudent:newStudents) {
             if (studentDetailsService.getStudentById(newStudent.getId())>0){
 
-                throw new BadRequestException(DUPLICATE_ID + newStudent.getId());
+                throw new BadRequestException(String.format(DUPLICATE_ID,newStudent.getId()));
             }
 
         }
@@ -76,7 +76,7 @@ public class StudentController {
     @PostMapping("/newstudent")
     public ResponseEntity<StudentDetails> createNewStudent( @Valid  @RequestBody NewStudent newStudent) {
         if (studentDetailsService.getStudentById(newStudent.getId())>0){
-                throw new BadRequestException(DUPLICATE_ID + newStudent.getId());
+                throw new BadRequestException(String.format(DUPLICATE_ID,newStudent.getId()));
         }
 
         return new ResponseEntity<>(studentDetailsService.createNewStudent(newStudent), HttpStatus.CREATED);
