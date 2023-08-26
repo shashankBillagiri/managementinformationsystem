@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.springpractise.managementinformationsystem.util.MISConstants.DUPLICATE_ID;
-import static com.springpractise.managementinformationsystem.util.MISConstants.STUDENTS_DO_NOT_EXIST;
+import static com.springpractise.managementinformationsystem.util.MISConstants.*;
 
 @RestController
 @RequestMapping("/v1/mis")
@@ -51,7 +50,7 @@ public class StudentController {
             return  ResponseEntity.ok(studentsByFirstName);
         }
 
-       throw new StudentsNotFoundException(STUDENTS_DO_NOT_EXIST +firstName);
+       throw new StudentsNotFoundException(String.format(STUDENTS_DO_NOT_EXIST,firstName));
     }
 
     // to create Multiple or single Records in a single Request.
@@ -59,9 +58,15 @@ public class StudentController {
     public ResponseEntity<List<StudentDetails>> createNewStudents(  @RequestBody List<StudentDetails> newStudents) throws BadRequestException {
 
         for (StudentDetails  newStudent:newStudents) {
+
             if (studentDetailsService.getStudentById(newStudent.getId())>0){
 
-                throw new BadRequestException(DUPLICATE_ID + newStudent.getId());
+                throw new BadRequestException(String.format(DUPLICATE_ID,newStudent.getId()));
+            }
+
+            if (!VALID_COURSES.contains(newStudent.getCourse().toUpperCase())){
+
+                throw  new BadRequestException(INVALID_COURSE);
             }
 
         }
@@ -75,8 +80,14 @@ public class StudentController {
     @SneakyThrows
     @PostMapping("/newstudent")
     public ResponseEntity<StudentDetails> createNewStudent( @Valid  @RequestBody NewStudent newStudent) {
+
         if (studentDetailsService.getStudentById(newStudent.getId())>0){
-                throw new BadRequestException(DUPLICATE_ID + newStudent.getId());
+                throw new BadRequestException(String.format(DUPLICATE_ID,newStudent.getId()));
+        }
+
+        if (!VALID_COURSES.contains(newStudent.getCourse().toUpperCase())){
+            throw  new BadRequestException(INVALID_COURSE);
+
         }
 
         return new ResponseEntity<>(studentDetailsService.createNewStudent(newStudent), HttpStatus.CREATED);
