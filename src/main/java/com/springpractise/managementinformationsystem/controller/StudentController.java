@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.springpractise.managementinformationsystem.util.MISConstants.DUPLICATE_ID;
-import static com.springpractise.managementinformationsystem.util.MISConstants.STUDENTS_DO_NOT_EXIST;
+import static com.springpractise.managementinformationsystem.util.MISConstants.*;
 
 @RestController
 @RequestMapping("/v1/mis")
@@ -75,6 +74,10 @@ public class StudentController {
     @SneakyThrows
     @PostMapping("/newstudent")
     public ResponseEntity<StudentDetails> createNewStudent( @Valid  @RequestBody NewStudent newStudent) {
+        if (!VALID_COURSES.contains(newStudent.getCourse().toUpperCase())){
+            throw  new BadRequestException(INVALID_COURSE);
+
+        }
         if (studentDetailsService.getStudentById(newStudent.getId())>0){
                 throw new BadRequestException(String.format(DUPLICATE_ID,newStudent.getId()));
         }
