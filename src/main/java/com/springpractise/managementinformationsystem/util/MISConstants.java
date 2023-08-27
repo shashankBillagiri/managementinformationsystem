@@ -3,7 +3,7 @@ package com.springpractise.managementinformationsystem.util;
 import java.util.Arrays;
 import java.util.List;
 
-public class MISConstants {
+public final class MISConstants {
 
     public static final String DUPLICATE_ID = "There is a student Existing id %d , Please check the Id";
 

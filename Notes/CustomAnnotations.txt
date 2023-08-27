@@ -1,0 +1,21 @@
+
+Synatx:
+
+1) public @interface ValidateStudentGender{
+
+    }
+
+
+ 2) @Target - To define where we implement this, at the class level or at field level or at method level
+
+       @Target({ElementType.FIELD,ElementType.PARAMETER})
+
+
+ 3) @Retention -  Specifying Retention Policy -We need to specify at what time we want to implement this annotation.
+     whether at Runtime or at Compile time
+
+ 4) @Documented - To make sure that our custom anooation would be detected while generating Javadoc
+
+ 5) @Constratint - to define who is going to validate this annotation , like which class is going to validate the annotation.
+
+
