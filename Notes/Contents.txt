@@ -12,3 +12,6 @@ What did we learn?
 10) Creating a custom annotation for validations.
 11) Using constants to improve code Readability.
 12) Implemented Pagination
+13) Added Jococo  to monitor code coverage
+14) Implemented Unit testing(Junit & Mockito )
+15) Creating a JavaDoc.

@@ -1,6 +1,7 @@
 package com.springpractise.managementinformationsystem.dto;
 
 
+import com.springpractise.managementinformationsystem.util.ValidateStudentGender;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class NewStudent {
     @NotBlank(message = "last name cannot be empty or null")
     private String lastName;
 
+    @ValidateStudentGender
     private String gender;
 
     @Min(18)
