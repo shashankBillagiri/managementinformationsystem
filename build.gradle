@@ -2,12 +2,12 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.4'
     id 'io.spring.dependency-management' version '1.1.0'
-    id 'jacoco'
 }
 
 group = 'com.springpractise'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -19,25 +19,7 @@ repositories {
 }
 
 
-test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
-}
-jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
-}
 
-jacoco {
-    toolVersion = "0.8.9"
-    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-}
-
-jacocoTestReport {
-    reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
-    }
-}
 
 
 dependencies {
@@ -52,18 +34,8 @@ dependencies {
     implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '8.0.1.Final'
 }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0
-            }
-        }
-    }
-}
 
-// to run coverage verification during the build (and fail when appropriate)
-check.dependsOn jacocoTestCoverageVerification
+
 
 tasks.named('test') {
     useJUnitPlatform()

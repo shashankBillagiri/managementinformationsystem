@@ -68,3 +68,5 @@ d) Both @RequestParam and @PathVariable can be optional.
 
 -------------------------------------------------------------------------------------------------------
 
+9) @PostConstruct
+
