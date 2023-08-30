@@ -8,10 +8,13 @@ import com.springpractise.managementinformationsystem.service.StudentDetailsServ
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.springpractise.managementinformationsystem.util.MISConstants.*;
@@ -25,8 +28,10 @@ public class StudentController {
 
     // Get All  studentdetails
     @GetMapping(value = "/getAllstudentdetails")
-    public ResponseEntity<List<StudentDetails>> getStudentDetails() {
-        return ResponseEntity.ok(studentDetailsService.getStudentDetails());
+    public ResponseEntity<Page<StudentDetails>> getStudentDetails(@RequestParam(defaultValue = "0") int page,
+                                                                  @RequestParam(defaultValue = "3") int size) {
+        Pageable paging = PageRequest.of(page, size);
+        return ResponseEntity.ok(studentDetailsService.getStudentDetails(paging));
     }
 
     // Get studentdetails by studentID
