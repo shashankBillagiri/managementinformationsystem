@@ -4,6 +4,9 @@ import com.springpractise.managementinformationsystem.dto.NewStudent;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +18,8 @@ public class StudentDetailsService {
     private StudentDetailsRepository studentDetailsRepository;
 
 
-    public List<StudentDetails> getStudentDetails() {
-        List<StudentDetails> studentDetails = studentDetailsRepository.findAll();
+    public Page<StudentDetails> getStudentDetails(Pageable paging) {
+        Page<StudentDetails> studentDetails = studentDetailsRepository.findAll(paging);
         studentDetails.forEach(System.out::println);
         return studentDetails;
     }
