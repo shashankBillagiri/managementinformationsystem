@@ -1,15 +1,19 @@
 package com.springpractise.managementinformationsystem.controller;
 
 import com.springpractise.managementinformationsystem.dto.NewStudent;
+import com.springpractise.managementinformationsystem.dto.StudentDetailsResponse;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.exception.BadRequestException;
 import com.springpractise.managementinformationsystem.exception.StudentsNotFoundException;
 import com.springpractise.managementinformationsystem.service.StudentDetailsService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +32,23 @@ public class StudentController {
 
     // Get All  studentdetails
     @GetMapping(value = "/getAllstudentdetails")
-    public ResponseEntity<Page<StudentDetails>> getStudentDetails(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<StudentDetailsResponse> getStudentDetails(@RequestParam @NotNull(message = "Enter a Valid page number") @Min(0) int page,
                                                                   @RequestParam(defaultValue = "3") int size) {
-        Pageable paging = PageRequest.of(page, size);
-        return ResponseEntity.ok(studentDetailsService.getStudentDetails(paging));
+        Pageable paging = PageRequest.of(page, size, Sort.by("studentId").descending());
+
+        Page<StudentDetails> recordsPage =studentDetailsService.getStudentDetails(paging);
+
+        StudentDetailsResponse studentDetailsResponse = new StudentDetailsResponse();
+
+        studentDetailsResponse.setStudentDetails(recordsPage.getContent());
+
+        studentDetailsResponse.setPageNumber(recordsPage.getNumber());
+
+        studentDetailsResponse.setPageSize(recordsPage.getSize());
+
+        studentDetailsResponse.setTotalStudents(recordsPage.getNumberOfElements());
+
+        return ResponseEntity.ok(studentDetailsResponse);
     }
 
     // Get studentdetails by studentID
