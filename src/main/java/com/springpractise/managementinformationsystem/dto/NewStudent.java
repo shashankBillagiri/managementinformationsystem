@@ -46,5 +46,5 @@ public class NewStudent {
 
     private String course;
 
-    private java.sql.Timestamp dateOfJoining;
+    private String dateOfJoining;
 }

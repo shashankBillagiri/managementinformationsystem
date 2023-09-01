@@ -60,5 +60,5 @@ public class StudentDetails implements Serializable {
     private long studentId;
 
     @Column(name = "Date_Of_Joining", nullable = false)
-    private java.sql.Timestamp dateOfJoining;
+    private String dateOfJoining;
 }

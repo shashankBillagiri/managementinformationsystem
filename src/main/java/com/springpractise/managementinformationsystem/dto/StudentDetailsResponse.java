@@ -18,4 +18,5 @@ public class StudentDetailsResponse {
     private Integer pageSize;
     private Integer pageNumber;
     private Integer totalStudents;
+    private String path;
 }
