@@ -6,7 +6,6 @@ import com.springpractise.managementinformationsystem.repository.StudentDetailsR
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class StudentDetailsService {
 
     public Page<StudentDetails> getStudentDetails(Pageable paging) {
         Page<StudentDetails> studentDetails = studentDetailsRepository.findAll(paging);
-        studentDetails.forEach(System.out::println);
+        //studentDetails.forEach(System.out::println);
         return studentDetails;
     }
 
