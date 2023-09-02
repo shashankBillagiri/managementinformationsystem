@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 @Data
 @Entity
@@ -60,5 +61,5 @@ public class StudentDetails implements Serializable {
     private long studentId;
 
     @Column(name = "Date_Of_Joining", nullable = false)
-    private String dateOfJoining;
+    private Instant dateOfJoining;
 }

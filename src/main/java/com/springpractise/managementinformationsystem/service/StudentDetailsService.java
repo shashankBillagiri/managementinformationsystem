@@ -1,6 +1,6 @@
 package com.springpractise.managementinformationsystem.service;
 
-import com.springpractise.managementinformationsystem.dto.NewStudent;
+import com.springpractise.managementinformationsystem.dto.NewStudentRequest;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -28,9 +29,9 @@ public class StudentDetailsService {
         return studentDetailsRepository.saveAll(newStudents);
     }
 
-    public StudentDetails createNewStudent(NewStudent newStudent) {
+    public StudentDetails createNewStudent(NewStudentRequest newStudentRequest) {
         StudentDetails studentDetails = StudentDetails
-                .build(newStudent.getId(), newStudent.getFirstName(), newStudent.getLastName(), newStudent.getGender(),newStudent.getAge(), newStudent.getEmail(), newStudent.getContactNumber(), newStudent.getAddressLine1(), newStudent.getAddressLine2(), newStudent.getAddressLine3(), newStudent.getState(), newStudent.getZipcode(), newStudent.getCourse(),0 ,newStudent.getDateOfJoining() );
+                .build(newStudentRequest.getId(), newStudentRequest.getFirstName(), newStudentRequest.getLastName(), newStudentRequest.getGender(), newStudentRequest.getAge(), newStudentRequest.getEmail(), newStudentRequest.getContactNumber(), newStudentRequest.getAddressLine1(), newStudentRequest.getAddressLine2(), newStudentRequest.getAddressLine3(), newStudentRequest.getState(), newStudentRequest.getZipcode(), newStudentRequest.getCourse(),0 , Instant.now() );
         return studentDetailsRepository.save(studentDetails);
     }
 
