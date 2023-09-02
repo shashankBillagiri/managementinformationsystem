@@ -28,8 +28,15 @@ public class GetStudentDetailsServiceImpl implements GetStudentDetailsService {
 
     @Override
     public StudentDetailsResponse getStudentDetails(Integer pageNumber, Integer pageSize, HttpServletRequest request) {
-        Pageable paging = PageRequest.of(pageNumber, pageSize, Sort.by("studentId").descending());
-        Page<StudentDetails> recordsPage = studentDetailsRepository.findAll(paging);
+
+        Pageable pageable = null;
+
+        if (pageSize == 0) {
+            pageable = Pageable.unpaged();
+        } else {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by("studentId").descending());
+        }
+        Page<StudentDetails> recordsPage = studentDetailsRepository.findAll(pageable);
         List<StudentDetails> studentDetail = recordsPage.getContent();
         return studentDetailsMapper.map(studentDetail, pageNumber, pageSize, (int) recordsPage.getTotalElements(), request);
     }
