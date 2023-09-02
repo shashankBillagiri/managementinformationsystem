@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StudentDetailsDTO {
-    private Integer id;
+public class StudentInfo {
+    private Long id;
     private String firstName;
     private String lastName;
     private String gender;
@@ -26,7 +26,7 @@ public class StudentDetailsDTO {
     private String state;
     private String zipcode;
     private String course;
-    private Integer studentId;
-    private String dateOfJoining;
-    private LocalDate age;
+    private Long studentId;
+    private LocalDate dateOfJoining;
+    private Long age;
 }
