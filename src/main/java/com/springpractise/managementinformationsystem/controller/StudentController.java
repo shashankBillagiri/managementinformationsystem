@@ -1,6 +1,6 @@
 package com.springpractise.managementinformationsystem.controller;
 
-import com.springpractise.managementinformationsystem.dto.NewStudent;
+import com.springpractise.managementinformationsystem.dto.NewStudentRequest;
 import com.springpractise.managementinformationsystem.dto.StudentDetailsResponse;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.exception.BadRequestException;
@@ -116,7 +116,7 @@ public class StudentController {
        Using dto Request Object inplace of directly using Entity*/
     @SneakyThrows
     @PostMapping("/newstudent")
-    public ResponseEntity<StudentDetails> createNewStudent(@Valid @RequestBody NewStudent newStudent) {
+    public ResponseEntity<StudentDetails> createNewStudent(@Valid @RequestBody NewStudentRequest newStudent) {
 
         if (studentDetailsService.getStudentById(newStudent.getId()) > 0) {
             throw new BadRequestException(String.format(DUPLICATE_ID, newStudent.getId()));
