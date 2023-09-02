@@ -5,24 +5,18 @@ import com.springpractise.managementinformationsystem.dto.StudentDetailsResponse
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.exception.BadRequestException;
 import com.springpractise.managementinformationsystem.exception.StudentsNotFoundException;
+import com.springpractise.managementinformationsystem.service.GetStudentDetailsService;
 import com.springpractise.managementinformationsystem.service.StudentDetailsService;
-import com.springpractise.managementinformationsystem.util.DateUtility;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.data.domain.Pageable;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.springpractise.managementinformationsystem.util.MISConstants.*;
@@ -34,34 +28,16 @@ public class StudentController {
     @Autowired
     private StudentDetailsService studentDetailsService;
 
+    @Autowired
+    private GetStudentDetailsService getStudentDetailsService;
+
     // Get All  studentdetails
     @GetMapping(value = "/getAllstudentdetails")
-    public ResponseEntity<StudentDetailsResponse> getStudentDetails(@RequestParam @NotNull(message = "Enter a Valid page number") @Min(0) int page,
-                                                                    @RequestParam(defaultValue = "3") int size, HttpServletRequest request) {
-        Pageable paging = PageRequest.of(page, size, Sort.by("studentId").descending());
+    public ResponseEntity<StudentDetailsResponse> getStudentDetails(@RequestParam @NotNull(message = "Enter a Valid pageNumber number") @Min(0) int pageNumber,
+                                                                    @RequestParam(defaultValue = "3") int pageSize, HttpServletRequest request) {
 
-        Page<StudentDetails> recordsPage = studentDetailsService.getStudentDetails(paging);
+        StudentDetailsResponse studentDetailsResponse = getStudentDetailsService.getStudentDetails(pageNumber, pageSize, request);
 
-        List<StudentDetails>  students = recordsPage.getContent();
-
-        /* students.stream().forEach(studentDetails -> {
-            studentDetails.setDateOfJoining(DateUtility.toDate(studentDetails.getDateOfJoining()));
-        });*/
-
-
-
-
-        StudentDetailsResponse studentDetailsResponse = new StudentDetailsResponse();
-
-        studentDetailsResponse.setStudentDetails(students);
-
-        studentDetailsResponse.setPageNumber(recordsPage.getNumber());
-
-        studentDetailsResponse.setPageSize(recordsPage.getSize());
-
-        studentDetailsResponse.setTotalStudents(recordsPage.getNumberOfElements());
-
-        studentDetailsResponse.setPath(request.getServletPath());
 
         return ResponseEntity.ok(studentDetailsResponse);
     }

@@ -1,6 +1,5 @@
 package com.springpractise.managementinformationsystem.dto;
 
-import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentDetailsResponse {
 
-    private List<StudentDetails> studentDetails;
+    private List<StudentInfo> studentDetails;
     private Integer pageSize;
     private Integer pageNumber;
     private Integer totalStudents;
