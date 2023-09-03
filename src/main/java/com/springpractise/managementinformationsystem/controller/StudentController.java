@@ -10,18 +10,19 @@ import com.springpractise.managementinformationsystem.service.StudentDetailsServ
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static com.springpractise.managementinformationsystem.util.MISConstants.*;
 
+@Validated
 @RestController
 @RequestMapping("/v1/mis")
 public class StudentController {
