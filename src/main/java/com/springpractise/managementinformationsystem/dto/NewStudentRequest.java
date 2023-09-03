@@ -44,7 +44,7 @@ public class NewStudentRequest {
 
     private String state;
 
-    private String zipcode;
+    private String zipCode;
 
     private String course;
 

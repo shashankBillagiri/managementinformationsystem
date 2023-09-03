@@ -5,12 +5,13 @@ import com.springpractise.managementinformationsystem.dto.StudentInfo;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.util.DateUtility;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -28,27 +29,28 @@ public class StudentDetailsMapper {
 
             StudentInfo studentInfo = StudentInfo.builder()
                     .id(StudentDetails.getId())
-                    .firstName(StudentDetails.getFirstName())
-                    .lastName(StudentDetails.getLastName())
-                    .gender(StudentDetails.getGender())
-                    .email(StudentDetails.getEmail())
+                    .firstName(StudentDetails.getFirstName().trim().toUpperCase())
+                    .lastName(StudentDetails.getLastName().trim().toUpperCase())
+                    .gender(StudentDetails.getGender().toUpperCase())
+                    .email(StudentDetails.getEmail().toUpperCase())
                     .contactNumber(StudentDetails.getContactNumber())
-                    .addressLine1(StudentDetails.getAddressLine1())
-                    .addressLine2(StudentDetails.getAddressLine2())
-                    .addressLine3(StudentDetails.getAddressLine3())
-                    .state(StudentDetails.getState())
-                    .zipcode(StudentDetails.getZipcode())
-                    .course(StudentDetails.getCourse())
+                    .addressLine1(StudentDetails.getAddressLine1().toUpperCase())
+                    .addressLine2(StudentDetails.getAddressLine2().toUpperCase())
+                    .addressLine3(StudentDetails.getAddressLine3().toUpperCase())
+                    .state(StudentDetails.getState().toUpperCase())
+                    .zipcode(StudentDetails.getZipcode().trim())
+                    .course(Objects.nonNull(StudentDetails.getCourse())? StudentDetails.getCourse(): "")
                     .studentId(StudentDetails.getStudentId())
                     .dateOfJoining(DateUtility.toDate(StudentDetails.getDateOfJoining()))
-                    .age(StudentDetails.getAge())
+                    .age(Objects.nonNull(StudentDetails.getAge())? StudentDetails.getAge() : 0)
                     .build();
 
             studentInformation.add(studentInfo);
 
-            studentDetailsResponse.setStudentDetails(studentInformation);
 
         });
+
+        studentDetailsResponse.setStudentDetails(studentInformation);
 
         studentDetailsResponse.setPageNumber(pageNumber);
 
