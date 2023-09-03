@@ -23,7 +23,7 @@ public class StudentDetailsService {
 
     public StudentDetails createNewStudent(NewStudentRequest newStudentRequest) {
         StudentDetails studentDetails = StudentDetails
-                .build(newStudentRequest.getId(), newStudentRequest.getFirstName(), newStudentRequest.getLastName(), newStudentRequest.getGender(), newStudentRequest.getAge(), newStudentRequest.getEmail(), newStudentRequest.getContactNumber(), newStudentRequest.getAddressLine1(), newStudentRequest.getAddressLine2(), newStudentRequest.getAddressLine3(), newStudentRequest.getState(), newStudentRequest.getZipcode(), newStudentRequest.getCourse(),0 , Instant.now() );
+                .build(newStudentRequest.getId(), newStudentRequest.getFirstName(), newStudentRequest.getLastName(), newStudentRequest.getGender(), newStudentRequest.getAge(), newStudentRequest.getEmail(), newStudentRequest.getContactNumber(), newStudentRequest.getAddressLine1(), newStudentRequest.getAddressLine2(), newStudentRequest.getAddressLine3(), newStudentRequest.getState(), newStudentRequest.getZipCode(), newStudentRequest.getCourse(),0 , Instant.now() );
         return studentDetailsRepository.save(studentDetails);
     }
 
