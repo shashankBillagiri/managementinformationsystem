@@ -6,7 +6,6 @@ import com.springpractise.managementinformationsystem.mapper.StudentDetailsMappe
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,17 +18,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetStudentDetailsServiceImpl implements GetStudentDetailsService {
 
-    @Autowired
-    private StudentDetailsRepository studentDetailsRepository;
+    private final StudentDetailsRepository studentDetailsRepository;
 
-    @Autowired
-    private StudentDetailsMapper studentDetailsMapper;
+    private final StudentDetailsMapper studentDetailsMapper;
 
 
     @Override
     public StudentDetailsResponse getStudentDetails(Integer pageNumber, Integer pageSize, HttpServletRequest request) {
 
-        Pageable pageable = null;
+        Pageable pageable ;
 
         if (pageSize == 0) {
             pageable = Pageable.unpaged();

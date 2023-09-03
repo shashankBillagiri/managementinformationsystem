@@ -10,6 +10,7 @@ import com.springpractise.managementinformationsystem.service.StudentDetailsServ
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ import static com.springpractise.managementinformationsystem.util.MISConstants.*
 public class StudentController {
 
     @Autowired
-    private StudentDetailsService studentDetailsService;
+    private  StudentDetailsService studentDetailsService;
 
     @Autowired
-    private GetStudentDetailsService getStudentDetailsService;
+    private   GetStudentDetailsService getStudentDetailsService;
 
     // Get All  studentdetails
-    @GetMapping(value = "/getAllstudentdetails")
+    @GetMapping(value = "/getallstudentdetails")
     public ResponseEntity<StudentDetailsResponse> getStudentDetails(@RequestParam @NotNull(message = "Enter a Valid pageNumber number") @Min(0) int pageNumber,
                                                                     @RequestParam(defaultValue = "3") int pageSize, HttpServletRequest request) {
 
@@ -43,19 +44,28 @@ public class StudentController {
     }
 
     // Get studentdetails by studentID
-    @GetMapping(value = "/getstudentdetailsByStudentID", produces = "application/json")
-    public ResponseEntity<StudentDetails> getStudentDetails(@RequestParam(required = false) Long StudentId) {
-        return ResponseEntity.ok(studentDetailsService.getStudentByStudentID(StudentId));
+    @GetMapping(value = "/getstudentdetailsbystudentid", produces = "application/json")
+    public ResponseEntity<StudentDetails> getStudentDetails(@RequestParam(required = false) Long studentId) throws StudentsNotFoundException {
+        StudentDetails studentsByStudentID = studentDetailsService.getStudentByStudentID(studentId);
+        if (studentsByStudentID != null) {
+            return ResponseEntity.ok(studentsByStudentID);
+        }
+        throw new StudentsNotFoundException(String.format(STUDENTS_DO_NOT_EXIST, studentId));
+
     }
 
     // Implementing the same as above using pathvariable.
-    @GetMapping(value = "/getstudentdetailsByStudentID/{StudentId}")
-    public ResponseEntity<StudentDetails> getStudentDetailss(@PathVariable Long StudentId) {
-        return ResponseEntity.ok(studentDetailsService.getStudentByStudentID(StudentId));
+    @GetMapping(value = "/getstudentdetailsbystudentid/{studentID}")
+    public ResponseEntity<StudentDetails> getStudentDetailsBySId(@PathVariable Long studentID) throws StudentsNotFoundException {
+        StudentDetails studentsByStudentID = studentDetailsService.getStudentByStudentID(studentID);
+        if (studentsByStudentID != null) {
+            return ResponseEntity.ok(studentsByStudentID);
+        }
+        throw new StudentsNotFoundException(String.format(STUDENTS_DO_NOT_EXIST, studentID));
     }
 
     //Get studentdetails by First name
-    @GetMapping(value = "/getstudentdetailsByFirstName", produces = "application/json")
+    @GetMapping(value = "/getstudentdetailsbyfirstname", produces = "application/json")
     public ResponseEntity<List<StudentDetails>> getStudentDetailsByFirstName(@RequestParam(required = false) String firstName) throws StudentsNotFoundException {
         List<StudentDetails> studentsByFirstName = studentDetailsService.getStudentByFirstName(firstName);
 
@@ -105,5 +115,10 @@ public class StudentController {
 
         return new ResponseEntity<>(studentDetailsService.createNewStudent(newStudent), HttpStatus.CREATED);
 
+    }
+
+    @DeleteMapping("/deletedtudentsbystudentids/{studentIds}")
+    public void  deleteStudent(@PathVariable @NotBlank  List<Long> studentIds) {
+        studentDetailsService.deleteStudentByStudentID(studentIds);
     }
 }

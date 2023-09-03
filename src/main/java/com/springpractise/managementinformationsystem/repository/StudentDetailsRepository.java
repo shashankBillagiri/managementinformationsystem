@@ -12,4 +12,9 @@ public interface StudentDetailsRepository extends JpaRepository<StudentDetails,I
     List<StudentDetails> findByid(long id);
 
     List<StudentDetails> findByFirstName(String firstName);
+
+
+    StudentDetails findByStudentId(long studentId);
+
+    void deleteByStudentIdIn(List<Long> studentIds);
 }
