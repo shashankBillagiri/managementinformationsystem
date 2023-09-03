@@ -5,6 +5,7 @@ import com.springpractise.managementinformationsystem.dto.StudentInfo;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.util.DateUtility;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,7 @@ public class StudentDetailsMapper {
         studentDetails.stream().forEach(StudentDetails ->{
 
 
-            StudentInfo StudentInfo = com.springpractise.managementinformationsystem.dto.StudentInfo.builder()
+            StudentInfo studentInfo = StudentInfo.builder()
                     .id(StudentDetails.getId())
                     .firstName(StudentDetails.getFirstName())
                     .lastName(StudentDetails.getLastName())
@@ -43,7 +44,7 @@ public class StudentDetailsMapper {
                     .age(StudentDetails.getAge())
                     .build();
 
-            studentInformation.add(StudentInfo);
+            studentInformation.add(studentInfo);
 
             studentDetailsResponse.setStudentDetails(studentInformation);
 
