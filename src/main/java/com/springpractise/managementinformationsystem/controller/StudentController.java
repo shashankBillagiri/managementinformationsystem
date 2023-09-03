@@ -118,7 +118,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/deletedtudentsbystudentids/{studentIds}")
-    public void  deleteStudent(@PathVariable @NotBlank  List<Long> studentIds) {
+    public void  deleteStudent(@PathVariable  List<Long> studentIds) {
         studentDetailsService.deleteStudentByStudentID(studentIds);
     }
 }
