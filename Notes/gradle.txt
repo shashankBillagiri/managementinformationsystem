@@ -1,0 +1,24 @@
+
+1) ./gradlew tasks - lists all the gradle tasks
+
+when you run the above command you see:
+ check - Runs all checks.
+ jacocoTestCoverageVerification - Verifies code coverage metrics based on specified rules for the test task.
+ jacocoTestReport - Generates code coverage report for the test task.
+ test - Runs the test suite.
+
+
+we can also run individual tasks like:
+
+./gradlew jacocoTestCoverageVerification
+
+./gradlew jacocoTestReport
+
+
+
+2) ./gradlew clean build
+
+3) ./gradlew build -x test  - exclude unit tests
+
+4) ./gradlew clean  removes the build Dir folder
+
