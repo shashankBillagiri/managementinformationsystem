@@ -20,5 +20,5 @@ we can also run individual tasks like:
 
 3) ./gradlew build -x test  - exclude unit tests
 
-4) ./gradlew clean  removes the build Dir folder
+4) ./gradlew clean -   removes the build Dir folder
 
