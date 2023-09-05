@@ -11,7 +11,7 @@
 
 
 
-@SneakyThrows
+@SneakyThrows - can be used Instead of explicitly throwing an Exception in the method Signature.
 
 
 

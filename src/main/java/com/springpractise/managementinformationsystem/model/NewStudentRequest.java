@@ -1,4 +1,4 @@
-package com.springpractise.managementinformationsystem.dto;
+package com.springpractise.managementinformationsystem.model;
 
 
 import com.springpractise.managementinformationsystem.util.ValidateStudentGender;
@@ -6,8 +6,6 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.Instant;
 
 @Data
 @AllArgsConstructor
