@@ -1,7 +1,7 @@
 package com.springpractise.managementinformationsystem.controller;
 
-import com.springpractise.managementinformationsystem.dto.NewStudentRequest;
-import com.springpractise.managementinformationsystem.dto.StudentDetailsResponse;
+import com.springpractise.managementinformationsystem.model.NewStudentRequest;
+import com.springpractise.managementinformationsystem.model.StudentDetailsResponse;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.exception.BadRequestException;
 import com.springpractise.managementinformationsystem.exception.StudentsNotFoundException;

@@ -1,7 +1,7 @@
 package com.springpractise.managementinformationsystem.mapper;
 
-import com.springpractise.managementinformationsystem.dto.StudentDetailsResponse;
-import com.springpractise.managementinformationsystem.dto.StudentInfo;
+import com.springpractise.managementinformationsystem.model.StudentDetailsResponse;
+import com.springpractise.managementinformationsystem.model.StudentInfo;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.util.DateUtility;
 import jakarta.servlet.http.HttpServletRequest;

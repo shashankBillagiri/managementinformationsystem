@@ -1,6 +1,6 @@
 package com.springpractise.managementinformationsystem.service;
 
-import com.springpractise.managementinformationsystem.dto.NewStudentRequest;
+import com.springpractise.managementinformationsystem.model.NewStudentRequest;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import jakarta.transaction.Transactional;

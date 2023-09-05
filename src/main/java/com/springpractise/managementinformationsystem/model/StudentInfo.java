@@ -1,4 +1,4 @@
-package com.springpractise.managementinformationsystem.dto;
+package com.springpractise.managementinformationsystem.model;
 
 
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.springpractise.managementinformationsystem.service;
 
-import com.springpractise.managementinformationsystem.dto.StudentDetailsResponse;
+import com.springpractise.managementinformationsystem.model.StudentDetailsResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
