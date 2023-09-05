@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,14 +18,19 @@ public class StudentDetailsService {
     private StudentDetailsRepository studentDetailsRepository;
 
 
-    public List<StudentDetails> createNewStudents(List<StudentDetails> newStudents) {
-        return studentDetailsRepository.saveAll(newStudents);
-    }
+    public List<StudentDetails> createNewStudents(List<NewStudentRequest> NewStudentRequests) {
 
-    public StudentDetails createNewStudent(NewStudentRequest newStudentRequest) {
-        StudentDetails studentDetails = StudentDetails
-                .build(newStudentRequest.getId(), newStudentRequest.getFirstName(), newStudentRequest.getLastName(), newStudentRequest.getGender(), newStudentRequest.getAge(), newStudentRequest.getEmail(), newStudentRequest.getContactNumber(), newStudentRequest.getAddressLine1(), newStudentRequest.getAddressLine2(), newStudentRequest.getAddressLine3(), newStudentRequest.getState(), newStudentRequest.getZipCode(), newStudentRequest.getCourse(),0 , Instant.now() );
-        return studentDetailsRepository.save(studentDetails);
+        List<StudentDetails> studentDetails = new ArrayList<>();
+
+        for (NewStudentRequest NewStudentRequest:NewStudentRequests) {
+
+            StudentDetails studentDetailsObject = StudentDetails
+                    .build(NewStudentRequest.getId(), NewStudentRequest.getFirstName(), NewStudentRequest.getLastName(), NewStudentRequest.getGender(), NewStudentRequest.getAge(), NewStudentRequest.getEmail(), NewStudentRequest.getContactNumber(), NewStudentRequest.getAddressLine1(), NewStudentRequest.getAddressLine2(), NewStudentRequest.getAddressLine3(), NewStudentRequest.getState(), NewStudentRequest.getZipCode(), NewStudentRequest.getCourse(),0 , Instant.now() );
+
+            studentDetails.add(studentDetailsObject);
+        }
+
+        return studentDetailsRepository.saveAll(studentDetails);
     }
 
 

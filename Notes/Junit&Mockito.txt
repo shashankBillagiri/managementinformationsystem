@@ -1,0 +1,9 @@
+cmd + Shift + T ---> to create a Test class for the selected Class.
+
+--------------------------------------------------------------------------------------------
+
+Mockito - to Mock data so that we avoid too many calls to Database.
+
+Mock Mvc is part of Mockito Framework.
+
+powermockAPi - to mock, private, static , final methods
