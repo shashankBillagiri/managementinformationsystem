@@ -1,9 +1,78 @@
 cmd + Shift + T ---> to create a Test class for the selected Class.
 
+Option + Enter ---> we get an option to create Tests.
+
 --------------------------------------------------------------------------------------------
+
+JUnit is a unit testing framework that focuses on writing and executing test cases for individual units of code.
+Mockito, is a mocking framework specifically designed to create mock objects for testing purposes.
 
 Mockito - to Mock data so that we avoid too many calls to Database.
 
 Mock Mvc is part of Mockito Framework.
 
-powermockAPi - to mock, private, static , final methods
+powermockAPi - to mock, private, static , final methods.
+
+-----------------------------------------------------------------------------------------------
+
+1) All junit test Methods should be void. Its in the test assertions that confirms if your code is producing the intended output.
+
+example:
+        assertEquals(20,21);
+        The first parameter is the value we expect and the second parameter is the value that we want to test
+
+        we also have a third parameter for assertEqulas() method, Which is called Delta,
+        generally used while comparing floating values.Delta is a range of errors that can be expected.
+
+2) Every test method should be self contained,i.e what happens in one test method,should not happen in other test method.
+Every test method should start fresh and be able to run independently of the other test methods.
+
+3) One test for One Condition Or Assertion.
+
+4) When you are testing a value against true or false ,it is actually preferrable to use assertTrue or assertFalse instead of assertEquals.
+
+
+
+Sample junit assertMethods:
+
+assertEquals();
+assertNotEquals();
+assertNotNull();
+assertTrue();
+assertFalse();
+
+
+-------------------------------------------------------------------------------------------------------------
+
+1) @BeforeEach :
+
+setUp
+
+The @Before annotation is used when different test cases share the same logic.
+The method with the @Before annotation always runs before the execution of each test case.
+This annotation is commonly used to develop necessary preconditions for each @Test method.
+
+
+2)  @AfterEach
+ Teardown
+
+ Execute after each test method.
+  Used with non-static method.
+ For example, to roll back database modifications
+
+3) @BeforeAll
+
+Execute before all test methods of the class are executed.
+Used with static method.
+For example, This method could contain some initialization code
+
+4) @AfterAll
+
+Execute after all test methods in the current class.
+Used with static method.
+For example, This method could contain some cleanup code.
+
+
+
+5) @Test
+
