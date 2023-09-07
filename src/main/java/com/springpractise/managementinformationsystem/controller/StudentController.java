@@ -1,17 +1,15 @@
 package com.springpractise.managementinformationsystem.controller;
 
-import com.springpractise.managementinformationsystem.model.NewStudentRequest;
-import com.springpractise.managementinformationsystem.model.StudentDetailsResponse;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.exception.BadRequestException;
 import com.springpractise.managementinformationsystem.exception.StudentsNotFoundException;
+import com.springpractise.managementinformationsystem.model.NewStudentRequest;
+import com.springpractise.managementinformationsystem.model.StudentDetailsResponse;
 import com.springpractise.managementinformationsystem.service.GetStudentDetailsService;
 import com.springpractise.managementinformationsystem.service.StudentDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +31,15 @@ public class StudentController {
     @Autowired
     private   GetStudentDetailsService getStudentDetailsService;
 
-    // Get All  studentdetails
+
+    /**
+     * Get All  studentdetails with pagination,
+     * if pagesize= 0 returns all records without pagination
+     * @param pageNumber
+     * @param pageSize
+     * @param request
+     * @return
+     */
     @GetMapping(value = "/getallstudentdetails")
     public ResponseEntity<StudentDetailsResponse> getStudentDetails(@RequestParam @NotNull(message = "Enter a Valid pageNumber number") @Min(0) int pageNumber,
                                                                     @RequestParam(defaultValue = "3") int pageSize, HttpServletRequest request) {
@@ -44,7 +50,13 @@ public class StudentController {
         return ResponseEntity.ok(studentDetailsResponse);
     }
 
-    // Get studentdetails by studentID
+
+    /**
+     * Get studentdetails by studentID
+     * @param studentId
+     * @return
+     * @throws StudentsNotFoundException
+     */
     @GetMapping(value = "/getstudentdetailsbystudentid", produces = "application/json")
     public ResponseEntity<StudentDetails> getStudentDetailsByStudID(@RequestParam(required = false) Long studentId) throws StudentsNotFoundException {
         StudentDetails studentsByStudentID = studentDetailsService.getStudentByStudentID(studentId);
@@ -55,7 +67,13 @@ public class StudentController {
 
     }
 
-    // Implementing the same as above using pathvariable.
+
+    /**
+     * Implementing the same as above using pathvariable.
+     * @param studentID
+     * @return
+     * @throws StudentsNotFoundException
+     */
     @GetMapping(value = "/getstudentdetailsbystudentid/{studentID}")
     public ResponseEntity<StudentDetails> getStudentDetailsBySId(@PathVariable Long studentID) throws StudentsNotFoundException {
         StudentDetails studentsByStudentID = studentDetailsService.getStudentByStudentID(studentID);
@@ -65,7 +83,13 @@ public class StudentController {
         throw new StudentsNotFoundException(String.format(STUDENTS_DO_NOT_EXIST, studentID));
     }
 
-    //Get studentdetails by First name
+
+    /**
+     * Get studentdetails by First name
+     * @param firstName
+     * @return
+     * @throws StudentsNotFoundException
+     */
     @GetMapping(value = "/getstudentdetailsbyfirstname", produces = "application/json")
     public ResponseEntity<List<StudentDetails>> getStudentDetailsByFirstName(@RequestParam(required = false) String firstName) throws StudentsNotFoundException {
         List<StudentDetails> studentsByFirstName = studentDetailsService.getStudentByFirstName(firstName);
@@ -77,7 +101,12 @@ public class StudentController {
         throw new StudentsNotFoundException(String.format(STUDENTS_DO_NOT_EXIST, firstName));
     }
 
-    // to create Multiple or single Records in a single Request.
+    /**
+     * to create Multiple or single Records in a single Request.
+     * @param newStudents
+     * @return
+     * @throws BadRequestException
+     */
     @PostMapping(value = "/newstudents")
     public ResponseEntity<List<StudentDetails>> createNewStudents(@RequestBody List<NewStudentRequest> newStudents) throws BadRequestException {
 
@@ -99,6 +128,10 @@ public class StudentController {
     }
 
 
+    /**
+     * Delete a single or multiple Records.
+     * @param studentIds
+     */
     @DeleteMapping("/deletedtudentsbystudentids/{studentIds}")
     public void  deleteStudent(@PathVariable  List<Long> studentIds) {
         studentDetailsService.deleteStudentByStudentID(studentIds);

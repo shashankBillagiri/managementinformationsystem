@@ -21,7 +21,7 @@ example:
         assertEquals(20,21);
         The first parameter is the value we expect and the second parameter is the value that we want to test
 
-        we also have a third parameter for assertEqulas() method, Which is called Delta,
+        we also have a third parameter for assertEquals() method, Which is called Delta,
         generally used while comparing floating values.Delta is a range of errors that can be expected.
 
 2) Every test method should be self contained,i.e what happens in one test method,should not happen in other test method.
@@ -54,6 +54,9 @@ The assertArrayEquals() method considers two Arrays equal when their lengths are
 (and in the same order).
 
 assertSame();
+
+we use this when we want to check if the two instances are exact the same instance.
+assertSame() method compares the object reference where as assertEquals() method uses the equals() method.
 
 assertNotSame();
 
