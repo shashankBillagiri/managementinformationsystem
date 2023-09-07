@@ -29,18 +29,33 @@ Every test method should start fresh and be able to run independently of the oth
 
 3) One test for One Condition Or Assertion.
 
-4) When you are testing a value against true or false ,it is actually preferrable to use assertTrue or assertFalse instead of assertEquals.
+4) When you are testing a value against true or false ,it is actually preferable to use assertTrue or assertFalse instead of assertEquals.
 
 
 
 Sample junit assertMethods:
 
 assertEquals();
+
 assertNotEquals();
+
 assertNotNull();
+
+assertNull();
+
 assertTrue();
+
 assertFalse();
 
+assertArrayEquals();
+when we want to verify the value of an array, we have to use the assertArrayEquals() method.
+The assertEquals() method won't work because it will only consider two arrays equal if they are the same instance.
+The assertArrayEquals() method considers two Arrays equal when their lengths are the same and every element in both arrays are same
+(and in the same order).
+
+assertSame();
+
+assertNotSame();
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -76,3 +91,4 @@ For example, This method could contain some cleanup code.
 
 5) @Test
 
+------------------------------------------------------------------------------------------------------------
