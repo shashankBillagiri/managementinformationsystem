@@ -2,7 +2,7 @@ cmd + Shift + T ---> to create a Test class for the selected Class.
 
 Option + Enter ---> we get an option to create Tests.
 
---------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 
 JUnit is a unit testing framework that focuses on writing and executing test cases for individual units of code.
 Mockito, is a mocking framework specifically designed to create mock objects for testing purposes.
@@ -13,7 +13,11 @@ Mock Mvc is part of Mockito Framework.
 
 powermockAPi - to mock, private, static , final methods.
 
------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+Assign
+Act
+Assert
+-----------------------------------------------------------------------------------------------------------------
 
 1) All junit test Methods should be void. Its in the test assertions that confirms if your code is producing the intended output.
 
