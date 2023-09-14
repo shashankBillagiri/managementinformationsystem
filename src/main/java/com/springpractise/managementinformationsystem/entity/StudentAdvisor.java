@@ -1,6 +1,5 @@
 package com.springpractise.managementinformationsystem.entity;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 

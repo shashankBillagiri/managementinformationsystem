@@ -1,8 +1,8 @@
 package com.springpractise.managementinformationsystem.service;
 
-import com.springpractise.managementinformationsystem.model.StudentDetailsResponse;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.mapper.StudentDetailsMapper;
+import com.springpractise.managementinformationsystem.model.StudentDetailsResponse;
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
