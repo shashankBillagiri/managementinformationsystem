@@ -2,6 +2,7 @@ package com.springpractise.managementinformationsystem.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.Instant;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "build")
 @Table(name = "student_details")
