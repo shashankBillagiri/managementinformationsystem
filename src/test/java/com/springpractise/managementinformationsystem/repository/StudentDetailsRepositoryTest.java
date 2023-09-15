@@ -57,7 +57,7 @@ public class StudentDetailsRepositoryTest {
     public void testFindByFirstName_Found() {
         List<StudentDetails> students = studentDetailsRepository.findByFirstName("JOHN");
         assertThat(students).isNotEmpty();
-        assertThat((students.get(0).getFirstName()).equalsIgnoreCase("John"));
+        assertThat(students.get(0).getFirstName()).isEqualTo("JOHN");
     }
 
 
@@ -72,7 +72,7 @@ public class StudentDetailsRepositoryTest {
 
         List<StudentDetails> students = studentDetailsRepository.findByid(12345);
         assertThat(students).isNotEmpty();
-        assertThat(students.get(0).getFirstName().equalsIgnoreCase("John"));
+        assertThat(students.get(0).getFirstName()).isEqualTo("JOHN");
 
     }
 
@@ -86,14 +86,14 @@ public class StudentDetailsRepositoryTest {
     public void testFindByStudentId_Found() {
 
         StudentDetails students = studentDetailsRepository.findByStudentId(studentDetails.getStudentId());
-        assertThat(students.getFirstName().equalsIgnoreCase("JOHN"));
+        assertThat(students.getFirstName()).isEqualTo("JOHN");
     }
 
     @Test
     public void testFindByStudentId_NotFound() {
 
         StudentDetails studentDetails = studentDetailsRepository.findByStudentId(12345);
-        assertNull("studentdetails is Null", studentDetails);
+        assertNull("student details is Null", studentDetails);
     }
 
 }
