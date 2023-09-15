@@ -26,7 +26,7 @@ public class GetStudentDetailsServiceImpl implements GetStudentDetailsService {
     @Override
     public StudentDetailsResponse getStudentDetails(Integer pageNumber, Integer pageSize, HttpServletRequest request) {
 
-        Pageable pageable ;
+        Pageable pageable;
 
         if (pageSize == 0) {
             pageable = Pageable.unpaged();

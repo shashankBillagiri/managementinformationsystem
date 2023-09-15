@@ -35,7 +35,7 @@ public class ValidationExceptionHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({StudentsNotFoundException.class})
-    public Map<String, String> handleBusinessException(StudentsNotFoundException  ex) {
+    public Map<String, String> handleBusinessException(StudentsNotFoundException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", ex.getMessage());
         return errorMap;
@@ -43,7 +43,7 @@ public class ValidationExceptionHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({IllegalArgumentException.class})
-    public Map<String, String> handleBusinessException(  IllegalArgumentException ex) {
+    public Map<String, String> handleBusinessException(IllegalArgumentException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", ex.getMessage());
         return errorMap;

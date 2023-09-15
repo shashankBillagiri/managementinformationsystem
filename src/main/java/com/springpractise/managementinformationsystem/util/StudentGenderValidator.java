@@ -6,10 +6,10 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.List;
 
-public class StudentGenderValidator implements ConstraintValidator<ValidateStudentGender,String> {
+public class StudentGenderValidator implements ConstraintValidator<ValidateStudentGender, String> {
     @Override
     public boolean isValid(String gender, ConstraintValidatorContext context) {
-        List<String>  validGender = Arrays.asList("F","M");
+        List<String> validGender = Arrays.asList("F", "M");
         return validGender.contains(gender);
     }
 }

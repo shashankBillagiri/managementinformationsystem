@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
 public interface GetStudentDetailsService {
 
 
-    StudentDetailsResponse getStudentDetails(Integer pageNumber, Integer pageSize, HttpServletRequest request) ;
+    StudentDetailsResponse getStudentDetails(Integer pageNumber, Integer pageSize, HttpServletRequest request);
 }

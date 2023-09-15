@@ -21,17 +21,14 @@ import static org.springframework.test.util.AssertionErrors.assertNull;
 public class StudentDetailsRepositoryTest {
 
 
+    StudentDetails studentDetails;
     @Autowired
     private TestEntityManager testEntityManager;
-
     @Autowired
     private StudentDetailsRepository studentDetailsRepository;
 
-    StudentDetails studentDetails;
-
-
     @BeforeEach
-   public void setUp() {
+    public void setUp() {
 
         studentDetails = StudentDetails.builder()
                 .id((long) 12345)
@@ -65,7 +62,7 @@ public class StudentDetailsRepositoryTest {
 
 
     @Test
-    public  void testFindByFirstName_NotFound() {
+    public void testFindByFirstName_NotFound() {
         List<StudentDetails> students = studentDetailsRepository.findByFirstName("Kathy");
         assertThat(students).isEmpty();
     }
@@ -96,7 +93,7 @@ public class StudentDetailsRepositoryTest {
     public void testFindByStudentId_NotFound() {
 
         StudentDetails studentDetails = studentDetailsRepository.findByStudentId(12345);
-        assertNull("studentdetails is Null",studentDetails);
+        assertNull("studentdetails is Null", studentDetails);
     }
 
 }
