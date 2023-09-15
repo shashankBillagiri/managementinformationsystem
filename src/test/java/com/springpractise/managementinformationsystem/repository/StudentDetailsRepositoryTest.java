@@ -3,11 +3,9 @@ package com.springpractise.managementinformationsystem.repository;
 import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.Instant;
 import java.util.List;
@@ -17,7 +15,6 @@ import static org.springframework.test.util.AssertionErrors.assertNull;
 
 
 @DataJpaTest
-@ExtendWith(SpringExtension.class)
 public class StudentDetailsRepositoryTest {
 
 
@@ -56,7 +53,7 @@ public class StudentDetailsRepositoryTest {
     @Test
     public void testFindByFirstName_Found() {
         List<StudentDetails> students = studentDetailsRepository.findByFirstName("JOHN");
-        assertThat(students).isNotEmpty();
+        assertThat(students.isEmpty()).isFalse();
         assertThat(students.get(0).getFirstName()).isEqualTo("JOHN");
     }
 
@@ -64,14 +61,14 @@ public class StudentDetailsRepositoryTest {
     @Test
     public void testFindByFirstName_NotFound() {
         List<StudentDetails> students = studentDetailsRepository.findByFirstName("Kathy");
-        assertThat(students).isEmpty();
+        assertThat(students.isEmpty()).isTrue();
     }
 
     @Test
     public void testFindById_Found() {
 
         List<StudentDetails> students = studentDetailsRepository.findByid(12345);
-        assertThat(students).isNotEmpty();
+        assertThat(students.isEmpty()).isFalse();
         assertThat(students.get(0).getFirstName()).isEqualTo("JOHN");
 
     }
@@ -79,7 +76,7 @@ public class StudentDetailsRepositoryTest {
     @Test
     public void testFindById_NOTFound() {
         List<StudentDetails> studentDetails = studentDetailsRepository.findByid(1234);
-        assertThat(studentDetails).isEmpty();
+        assertThat(studentDetails.isEmpty()).isTrue();
     }
 
     @Test
@@ -93,7 +90,7 @@ public class StudentDetailsRepositoryTest {
     public void testFindByStudentId_NotFound() {
 
         StudentDetails studentDetails = studentDetailsRepository.findByStudentId(12345);
-        assertNull("student details is Null", studentDetails);
+        assertThat(studentDetails).isNull();
     }
 
 }
