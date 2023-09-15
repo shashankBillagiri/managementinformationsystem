@@ -16,14 +16,14 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class StudentDetailsMapper {
 
-    public StudentDetailsResponse map(List<StudentDetails> studentDetails, Integer pageNumber, Integer pageSize, Integer totalStudents, HttpServletRequest request){
+    public StudentDetailsResponse map(List<StudentDetails> studentDetails, Integer pageNumber, Integer pageSize, Integer totalStudents, HttpServletRequest request) {
 
 
         StudentDetailsResponse studentDetailsResponse = new StudentDetailsResponse();
 
         List<StudentInfo> studentInformation = new ArrayList<>();
 
-        studentDetails.stream().forEach(StudentDetails ->{
+        studentDetails.stream().forEach(StudentDetails -> {
 
 
             StudentInfo studentInfo = StudentInfo.builder()
@@ -38,10 +38,10 @@ public class StudentDetailsMapper {
                     .addressLine3(StudentDetails.getAddressLine3().toUpperCase())
                     .state(StudentDetails.getState().toUpperCase())
                     .zipcode(StudentDetails.getZipcode().trim())
-                    .course(Objects.nonNull(StudentDetails.getCourse())? StudentDetails.getCourse(): "")
+                    .course(Objects.nonNull(StudentDetails.getCourse()) ? StudentDetails.getCourse() : "")
                     .studentId(StudentDetails.getStudentId())
                     .dateOfJoining(DateUtility.toDate(StudentDetails.getDateOfJoining()))
-                    .age(Objects.nonNull(StudentDetails.getAge())? StudentDetails.getAge() : 0)
+                    .age(Objects.nonNull(StudentDetails.getAge()) ? StudentDetails.getAge() : 0)
                     .build();
 
             studentInformation.add(studentInfo);

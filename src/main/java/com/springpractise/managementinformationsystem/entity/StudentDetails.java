@@ -42,16 +42,16 @@ public class StudentDetails implements Serializable {
     @Column(name = "address_Line1", columnDefinition = "varchar(30)")
     private String addressLine1;
 
-    @Column(name = "address_Line2",  columnDefinition = "varchar(30)")
+    @Column(name = "address_Line2", columnDefinition = "varchar(30)")
     private String addressLine2;
 
-    @Column(name = "address_Line3",columnDefinition = "varchar(30)")
+    @Column(name = "address_Line3", columnDefinition = "varchar(30)")
     private String addressLine3;
 
-    @Column(name = "state",  columnDefinition = "varchar(30)")
+    @Column(name = "state", columnDefinition = "varchar(30)")
     private String state;
 
-    @Column(name = "Zipcode",columnDefinition = "varchar(100)")
+    @Column(name = "Zipcode", columnDefinition = "varchar(100)")
     private String zipcode;
 
     @Column(name = "course", nullable = true)

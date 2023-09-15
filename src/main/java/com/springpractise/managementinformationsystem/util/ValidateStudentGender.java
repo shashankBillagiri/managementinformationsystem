@@ -5,15 +5,15 @@ import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.FIELD,ElementType.PARAMETER})
+@Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = StudentGenderValidator.class)
 public @interface ValidateStudentGender {
 
-    public String  message() default "Gender should be either M  OR F";
+    public String message() default "Gender should be either M  OR F";
 
-    Class<?>[] groups() default { };
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+    Class<? extends Payload>[] payload() default {};
 }

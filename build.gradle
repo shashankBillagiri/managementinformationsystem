@@ -36,21 +36,19 @@ dependencies {
 }
 
 
-
-
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
 
-jacocoTestReport{
+jacocoTestReport {
     dependsOn test
-    reports{
+    reports {
         xml.enabled false
         csv.enabled false
         html.enabled true
     }
-    afterEvaluate{
+    afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
                     exclude: ['**/model/**', '**/entity/**']
@@ -62,11 +60,11 @@ jacocoTestReport{
 }
 
 jacocoTestCoverageVerification {
-    violationRules{
+    violationRules {
         rule {
             enabled = true
 
-            limit{
+            limit {
                 minimum = 0.0
             }
         }

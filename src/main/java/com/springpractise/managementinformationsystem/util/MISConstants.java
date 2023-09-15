@@ -13,5 +13,5 @@ public final class MISConstants {
 
     public static final String REQUEST_MAPPING = "/v1/mis";
 
-    public static final List<String> VALID_COURSES = Arrays.asList("ECE", "CSE", "EEE","CIVIL","MECH");
+    public static final List<String> VALID_COURSES = Arrays.asList("ECE", "CSE", "EEE", "CIVIL", "MECH");
 }

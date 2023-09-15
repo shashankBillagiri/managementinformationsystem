@@ -13,9 +13,9 @@ public class StudentAdvisor {
     @Column(name = "advisorid", unique = true)
     private long advisorId;
 
-    @Column(name = "firstname", columnDefinition ="varchar(20)")
+    @Column(name = "firstname", columnDefinition = "varchar(20)")
     private String firstName;
 
-    @Column(name = "lastname", columnDefinition ="varchar(20)")
+    @Column(name = "lastname", columnDefinition = "varchar(20)")
     private String lastName;
 }

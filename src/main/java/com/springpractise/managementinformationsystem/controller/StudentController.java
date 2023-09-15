@@ -26,15 +26,16 @@ import static com.springpractise.managementinformationsystem.util.MISConstants.*
 public class StudentController {
 
     @Autowired
-    private  StudentDetailsService studentDetailsService;
+    private StudentDetailsService studentDetailsService;
 
     @Autowired
-    private   GetStudentDetailsService getStudentDetailsService;
+    private GetStudentDetailsService getStudentDetailsService;
 
 
     /**
      * Get All  studentdetails with pagination,
      * if pagesize= 0 returns all records without pagination
+     *
      * @param pageNumber
      * @param pageSize
      * @param request
@@ -53,6 +54,7 @@ public class StudentController {
 
     /**
      * Get studentdetails by studentID
+     *
      * @param studentId
      * @return
      * @throws StudentsNotFoundException
@@ -70,6 +72,7 @@ public class StudentController {
 
     /**
      * Implementing the same as above using pathvariable.
+     *
      * @param studentID
      * @return
      * @throws StudentsNotFoundException
@@ -86,6 +89,7 @@ public class StudentController {
 
     /**
      * Get studentdetails by First name
+     *
      * @param firstName
      * @return
      * @throws StudentsNotFoundException
@@ -103,6 +107,7 @@ public class StudentController {
 
     /**
      * to create Multiple or single Records in a single Request.
+     *
      * @param newStudents
      * @return
      * @throws BadRequestException
@@ -130,10 +135,11 @@ public class StudentController {
 
     /**
      * Delete a single or multiple Records.
+     *
      * @param studentIds
      */
     @DeleteMapping("/deletedtudentsbystudentids/{studentIds}")
-    public void  deleteStudent(@PathVariable  List<Long> studentIds) {
+    public void deleteStudent(@PathVariable List<Long> studentIds) {
         studentDetailsService.deleteStudentByStudentID(studentIds);
     }
 }

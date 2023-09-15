@@ -22,10 +22,10 @@ public class StudentDetailsService {
 
         List<StudentDetails> studentDetails = new ArrayList<>();
 
-        for (NewStudentRequest NewStudentRequest:NewStudentRequests) {
+        for (NewStudentRequest NewStudentRequest : NewStudentRequests) {
 
             StudentDetails studentDetailsObject = StudentDetails
-                    .build(NewStudentRequest.getId(), NewStudentRequest.getFirstName(), NewStudentRequest.getLastName(), NewStudentRequest.getGender(), NewStudentRequest.getAge(), NewStudentRequest.getEmail(), NewStudentRequest.getContactNumber(), NewStudentRequest.getAddressLine1(), NewStudentRequest.getAddressLine2(), NewStudentRequest.getAddressLine3(), NewStudentRequest.getState(), NewStudentRequest.getZipCode(), NewStudentRequest.getCourse(),0 , Instant.now() );
+                    .build(NewStudentRequest.getId(), NewStudentRequest.getFirstName(), NewStudentRequest.getLastName(), NewStudentRequest.getGender(), NewStudentRequest.getAge(), NewStudentRequest.getEmail(), NewStudentRequest.getContactNumber(), NewStudentRequest.getAddressLine1(), NewStudentRequest.getAddressLine2(), NewStudentRequest.getAddressLine3(), NewStudentRequest.getState(), NewStudentRequest.getZipCode(), NewStudentRequest.getCourse(), 0, Instant.now());
 
             studentDetails.add(studentDetailsObject);
         }
@@ -34,27 +34,27 @@ public class StudentDetailsService {
     }
 
 
-    public  StudentDetails getStudentByStudentID(Long studentId){
+    public StudentDetails getStudentByStudentID(Long studentId) {
         StudentDetails studentDetails = studentDetailsRepository.findByStudentId(studentId);
         return studentDetails;
     }
 
-    public  int getStudentById(Long id){
+    public int getStudentById(Long id) {
         Integer id1 = Math.toIntExact(id);
         int count = studentDetailsRepository.findByid(id1).size();
         return count;
     }
 
-    public  List<StudentDetails> getStudentByFirstName(String firstName){
+    public List<StudentDetails> getStudentByFirstName(String firstName) {
         List<StudentDetails> studentDetails = studentDetailsRepository.findByFirstName(firstName);
         return studentDetails;
     }
 
 
     @Transactional
-    public  void deleteStudentByStudentID(List<Long> studentIds){
+    public void deleteStudentByStudentID(List<Long> studentIds) {
 
-         studentDetailsRepository.deleteByStudentIdIn(studentIds);
+        studentDetailsRepository.deleteByStudentIdIn(studentIds);
     }
 
 }
