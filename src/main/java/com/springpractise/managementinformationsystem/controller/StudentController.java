@@ -25,11 +25,14 @@ import static com.springpractise.managementinformationsystem.util.MISConstants.*
 @RequestMapping(REQUEST_MAPPING)
 public class StudentController {
 
-    @Autowired
-    private StudentDetailsService studentDetailsService;
+    private final StudentDetailsService studentDetailsService;
 
-    @Autowired
-    private GetStudentDetailsService getStudentDetailsService;
+    private final GetStudentDetailsService getStudentDetailsService;
+
+    public StudentController(StudentDetailsService studentDetailsService, GetStudentDetailsService getStudentDetailsService) {
+        this.studentDetailsService = studentDetailsService;
+        this.getStudentDetailsService = getStudentDetailsService;
+    }
 
 
     /**
@@ -88,7 +91,7 @@ public class StudentController {
 
 
     /**
-     * Get studentdetails by First name
+     * Get student details by First name
      *
      * @param firstName
      * @return
@@ -98,7 +101,7 @@ public class StudentController {
     public ResponseEntity<List<StudentDetails>> getStudentDetailsByFirstName(@RequestParam(required = false) String firstName) throws StudentsNotFoundException {
         List<StudentDetails> studentsByFirstName = studentDetailsService.getStudentByFirstName(firstName);
 
-        if (studentsByFirstName.size() > 0) {
+        if (!studentsByFirstName.isEmpty()) {
             return ResponseEntity.ok(studentsByFirstName);
         }
 

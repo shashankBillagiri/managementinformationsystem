@@ -23,7 +23,7 @@ public class StudentDetailsMapper {
 
         List<StudentInfo> studentInformation = new ArrayList<>();
 
-        studentDetails.stream().forEach(StudentDetails -> {
+        studentDetails.forEach(StudentDetails -> {
 
 
             StudentInfo studentInfo = StudentInfo.builder()
