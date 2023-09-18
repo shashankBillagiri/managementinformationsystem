@@ -5,28 +5,35 @@ import com.springpractise.managementinformationsystem.mapper.StudentDetailsMappe
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.Instant;
-
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 class GetStudentDetailsServiceImplTest {
 
     @Mock
     private  StudentDetailsRepository studentDetailsRepository;
     @Mock
     private StudentDetailsMapper studentDetailsMapper;
-    @InjectMocks
+
+    @Autowired
     private GetStudentDetailsService getStudentDetailsService;
 
     StudentDetails studentDetails;
 
 
 
+
     @BeforeEach
     void setUp() {
 
-        getStudentDetailsService = new GetStudentDetailsServiceImpl(studentDetailsRepository,studentDetailsMapper);
+
+       // getStudentDetailsService = new GetStudentDetailsServiceImpl(studentDetailsRepository,studentDetailsMapper);
 
         studentDetails = new StudentDetails();
 

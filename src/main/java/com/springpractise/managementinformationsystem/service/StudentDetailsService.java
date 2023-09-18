@@ -4,7 +4,6 @@ import com.springpractise.managementinformationsystem.entity.StudentDetails;
 import com.springpractise.managementinformationsystem.model.NewStudentRequest;
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -14,8 +13,11 @@ import java.util.List;
 @Service
 public class StudentDetailsService {
 
-    @Autowired
-    private StudentDetailsRepository studentDetailsRepository;
+    private  final StudentDetailsRepository studentDetailsRepository;
+
+    public StudentDetailsService(StudentDetailsRepository studentDetailsRepository) {
+        this.studentDetailsRepository = studentDetailsRepository;
+    }
 
 
     public List<StudentDetails> createNewStudents(List<NewStudentRequest> NewStudentRequests) {
