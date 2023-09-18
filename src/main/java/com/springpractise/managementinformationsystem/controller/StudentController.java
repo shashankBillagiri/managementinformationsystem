@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 import static com.springpractise.managementinformationsystem.util.MISConstants.*;
@@ -141,8 +142,13 @@ public class StudentController {
      *
      * @param studentIds
      */
-    @DeleteMapping("/deletedtudentsbystudentids/{studentIds}")
-    public void deleteStudent(@PathVariable List<Long> studentIds) {
-        studentDetailsService.deleteStudentByStudentID(studentIds);
+    @DeleteMapping("/deletetudentsbystudentids/{studentIds}")
+    public ResponseEntity<List<StudentDetails>> deleteStudent(@PathVariable List<Long> studentIds) throws StudentsNotFoundException{
+       List<StudentDetails>  deletedStudents = studentDetailsService.deleteStudentByStudentID(studentIds);
+
+        if (!deletedStudents.isEmpty()) {
+            return ResponseEntity.ok( deletedStudents);
+        }
+        throw new StudentsNotFoundException(String.format(STUDENT_DO_NOT_EXIST));
     }
 }
