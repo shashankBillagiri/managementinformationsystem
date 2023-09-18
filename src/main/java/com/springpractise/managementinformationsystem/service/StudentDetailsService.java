@@ -52,9 +52,9 @@ public class StudentDetailsService {
 
 
     @Transactional
-    public void deleteStudentByStudentID(List<Long> studentIds) {
+    public List<StudentDetails> deleteStudentByStudentID(List<Long> studentIds) {
 
-        studentDetailsRepository.deleteByStudentIdIn(studentIds);
+       return studentDetailsRepository.deleteByStudentIdIn(studentIds);
     }
 
 }
