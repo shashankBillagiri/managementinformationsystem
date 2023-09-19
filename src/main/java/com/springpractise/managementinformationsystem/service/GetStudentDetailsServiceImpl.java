@@ -20,7 +20,12 @@ public class GetStudentDetailsServiceImpl implements GetStudentDetailsService {
 
     private final StudentDetailsRepository studentDetailsRepository;
 
-    private final StudentDetailsMapper studentDetailsMapper;
+    private final StudentDetailsMapper studentDetailsMapper = new StudentDetailsMapper();
+
+
+    //  The below is also valid since we are using @RequiredArgsConstructor, its corresponding instance is created
+    // during the creation of GetStudentDetailsServiceImpl object
+   // private final StudentDetailsMapper studentDetailsMapper;
 
 
     @Override
