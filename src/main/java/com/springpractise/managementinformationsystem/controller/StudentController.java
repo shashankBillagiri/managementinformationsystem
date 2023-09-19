@@ -10,13 +10,12 @@ import com.springpractise.managementinformationsystem.service.StudentDetailsServ
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 import static com.springpractise.managementinformationsystem.util.MISConstants.*;
@@ -24,16 +23,17 @@ import static com.springpractise.managementinformationsystem.util.MISConstants.*
 @Validated
 @RestController
 @RequestMapping(REQUEST_MAPPING)
+@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentDetailsService studentDetailsService;
 
     private final GetStudentDetailsService getStudentDetailsService;
 
-    public StudentController(StudentDetailsService studentDetailsService, GetStudentDetailsService getStudentDetailsService) {
-        this.studentDetailsService = studentDetailsService;
-        this.getStudentDetailsService = getStudentDetailsService;
-    }
+//    public StudentController(StudentDetailsService studentDetailsService, GetStudentDetailsService getStudentDetailsService) {
+//        this.studentDetailsService = studentDetailsService;
+//        this.getStudentDetailsService = getStudentDetailsService;
+//    }
 
 
     /**
@@ -143,11 +143,11 @@ public class StudentController {
      * @param studentIds
      */
     @DeleteMapping("/deletetudentsbystudentids/{studentIds}")
-    public ResponseEntity<List<StudentDetails>> deleteStudent(@PathVariable List<Long> studentIds) throws StudentsNotFoundException{
-       List<StudentDetails>  deletedStudents = studentDetailsService.deleteStudentByStudentID(studentIds);
+    public ResponseEntity<List<StudentDetails>> deleteStudent(@PathVariable List<Long> studentIds) throws StudentsNotFoundException {
+        List<StudentDetails> deletedStudents = studentDetailsService.deleteStudentByStudentID(studentIds);
 
         if (!deletedStudents.isEmpty()) {
-            return ResponseEntity.ok( deletedStudents);
+            return ResponseEntity.ok(deletedStudents);
         }
         throw new StudentsNotFoundException(String.format(STUDENT_DO_NOT_EXIST));
     }

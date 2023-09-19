@@ -12,28 +12,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.Instant;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class GetStudentDetailsServiceImplTest {
 
+    StudentDetails studentDetails;
     @Mock
-    private  StudentDetailsRepository studentDetailsRepository;
+    private StudentDetailsRepository studentDetailsRepository;
     @Mock
     private StudentDetailsMapper studentDetailsMapper;
-
     @Autowired
     private GetStudentDetailsService getStudentDetailsService;
-
-    StudentDetails studentDetails;
-
-
-
 
     @BeforeEach
     void setUp() {
 
 
-       // getStudentDetailsService = new GetStudentDetailsServiceImpl(studentDetailsRepository,studentDetailsMapper);
+        // getStudentDetailsService = new GetStudentDetailsServiceImpl(studentDetailsRepository,studentDetailsMapper);
 
         studentDetails = new StudentDetails();
 
@@ -48,7 +44,7 @@ class GetStudentDetailsServiceImplTest {
         studentDetails.setCourse("CSE");
         studentDetails.setGender("M");
         studentDetails.setState("Kansas");
-        studentDetails.setAge((long)25);
+        studentDetails.setAge((long) 25);
         studentDetails.setContactNumber("12356478900");
         studentDetails.setEmail("sample@gmail.com");
         studentDetails.setDateOfJoining(Instant.now());
@@ -59,7 +55,6 @@ class GetStudentDetailsServiceImplTest {
 
     @Test
     void TestGetStudentDetailsWithoutPagination() {
-
 
 
     }

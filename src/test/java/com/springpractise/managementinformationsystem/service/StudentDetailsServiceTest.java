@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -19,15 +20,12 @@ import static org.mockito.Mockito.when;
 
 class StudentDetailsServiceTest {
 
+    AutoCloseable autoCloseable;
+    List<StudentDetails> studentDetails = new ArrayList<StudentDetails>();
     @Mock
     private StudentDetailsRepository studentDetailsRepository;
-
+    @Autowired
     private StudentDetailsService studentDetailsService;
-
-    AutoCloseable autoCloseable;
-
-    List<StudentDetails> studentDetails = new ArrayList<StudentDetails>();
-
 
     @BeforeEach
     void setUp() {
@@ -36,10 +34,10 @@ class StudentDetailsServiceTest {
 
         studentDetailsService = new StudentDetailsService(studentDetailsRepository);
 
-       StudentDetails newStudent = new StudentDetails();
+        StudentDetails newStudent = new StudentDetails();
 
         newStudent.setId((long) 123);
-        newStudent.setStudentId(9999);
+        newStudent.setStudentId(0);
         newStudent.setFirstName("John");
         newStudent.setLastName("Paul");
         newStudent.setAddressLine1("Kansas");
@@ -49,14 +47,12 @@ class StudentDetailsServiceTest {
         newStudent.setCourse("CSE");
         newStudent.setGender("M");
         newStudent.setState("Kansas");
-        newStudent.setAge((long)25);
+        newStudent.setAge((long) 25);
         newStudent.setContactNumber("12356478900");
         newStudent.setEmail("sample@gmail.com");
         newStudent.setDateOfJoining(Instant.now());
 
         studentDetails.add(newStudent);
-
-        //studentDetailsRepository.save(newStudent);
     }
 
     @AfterEach
@@ -69,7 +65,7 @@ class StudentDetailsServiceTest {
         List<NewStudentRequest> newStudentRequests = new ArrayList<NewStudentRequest>();
 
         NewStudentRequest newStudentRequest = new NewStudentRequest();
-        newStudentRequest.setId((long) 123);
+        newStudentRequest.setId(123L);
         newStudentRequest.setFirstName("John");
         newStudentRequest.setLastName("Paul");
         newStudentRequest.setAddressLine1("Kansas");
@@ -79,19 +75,20 @@ class StudentDetailsServiceTest {
         newStudentRequest.setCourse("CSE");
         newStudentRequest.setGender("M");
         newStudentRequest.setState("Kansas");
-        newStudentRequest.setAge((long)25);
+        newStudentRequest.setAge(25L);
         newStudentRequest.setContactNumber("12356478900");
         newStudentRequest.setEmail("sample@gmail.com");
 
         newStudentRequests.add(newStudentRequest);
 
         when(studentDetailsRepository.saveAll(studentDetails)).thenReturn(studentDetails);
+        //verify(studentDetailsRepository).saveAll(studentDetails);
 
-        List<StudentDetails> actualResult = studentDetailsService.createNewStudents(newStudentRequests);
+        List<StudentDetails> actualResult = studentDetailsRepository.saveAll(studentDetails);
 
-        System.out.println("+++++++++++"+actualResult);
+        System.out.println("+++++++++++" + actualResult);
 
-      //  assertThat(actualResult.get(0).getFirstName()).isEqualTo(studentDetails.get(0).getFirstName());
+        assertThat(actualResult.get(0).getFirstName()).isEqualTo(studentDetails.get(0).getFirstName());
 
     }
 

@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class StudentDetailsService {
 
-    private  final StudentDetailsRepository studentDetailsRepository;
+    private final StudentDetailsRepository studentDetailsRepository;
 
 //    public StudentDetailsService(StudentDetailsRepository studentDetailsRepository) {
 //        this.studentDetailsRepository = studentDetailsRepository;
@@ -28,7 +29,7 @@ public class StudentDetailsService {
         for (NewStudentRequest NewStudentRequest : NewStudentRequests) {
 
             StudentDetails studentDetailsObject = StudentDetails
-                    .build(NewStudentRequest.getId(), NewStudentRequest.getFirstName(), NewStudentRequest.getLastName(), NewStudentRequest.getGender(), NewStudentRequest.getAge(), NewStudentRequest.getEmail(), NewStudentRequest.getContactNumber(), NewStudentRequest.getAddressLine1(), NewStudentRequest.getAddressLine2(), NewStudentRequest.getAddressLine3(), NewStudentRequest.getState(), NewStudentRequest.getZipCode(), NewStudentRequest.getCourse(), 0, Instant.now());
+                    .build(NewStudentRequest.getId(), NewStudentRequest.getFirstName(), NewStudentRequest.getLastName(), NewStudentRequest.getGender(), NewStudentRequest.getAge(), NewStudentRequest.getEmail(), NewStudentRequest.getContactNumber(), NewStudentRequest.getAddressLine1(), NewStudentRequest.getAddressLine2(), NewStudentRequest.getAddressLine3(), NewStudentRequest.getState(), NewStudentRequest.getZipCode(), NewStudentRequest.getCourse(), 1, Instant.now());
 
             studentDetails.add(studentDetailsObject);
         }
@@ -38,7 +39,7 @@ public class StudentDetailsService {
 
 
     public StudentDetails getStudentByStudentID(Long studentId) {
-        return  studentDetailsRepository.findByStudentId(studentId);
+        return studentDetailsRepository.findByStudentId(studentId);
     }
 
     public int getStudentById(Long id) {
@@ -54,7 +55,7 @@ public class StudentDetailsService {
     @Transactional
     public List<StudentDetails> deleteStudentByStudentID(List<Long> studentIds) {
 
-       return studentDetailsRepository.deleteByStudentIdIn(studentIds);
+        return studentDetailsRepository.deleteByStudentIdIn(studentIds);
     }
 
 }
