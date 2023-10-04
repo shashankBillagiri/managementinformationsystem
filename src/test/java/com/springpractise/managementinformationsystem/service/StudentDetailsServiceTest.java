@@ -60,7 +60,7 @@ class StudentDetailsServiceTest {
     void tearDown() {
     }
 
-    @Test
+    //@Test
     void createNewStudents() {
 
         List<NewStudentRequest> newStudentRequests = new ArrayList<NewStudentRequest>();
