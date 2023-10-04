@@ -6,6 +6,7 @@ import com.springpractise.managementinformationsystem.model.StudentDetailsRespon
 import com.springpractise.managementinformationsystem.repository.StudentDetailsRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,7 @@ public class GetStudentDetailsServiceImpl implements GetStudentDetailsService {
 
 
     @Override
+    @Cacheable(value = "StudentDetailsResponse", key = "#pageSize")
     public StudentDetailsResponse getStudentDetails(Integer pageNumber, Integer pageSize, HttpServletRequest request) {
 
         Pageable pageable;
