@@ -18,7 +18,7 @@ import java.time.Instant;
 public class StudentDetails implements Serializable {
     private static final long serialVersionUID = 1234567L;
 
-    @Column(name = "id", columnDefinition = "number")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "first_name", columnDefinition = "varchar(30)")
