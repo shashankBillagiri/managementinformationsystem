@@ -8,6 +8,7 @@ import com.springpractise.managementinformationsystem.model.StudentDetailsRespon
 import com.springpractise.managementinformationsystem.service.GetStudentDetailsService;
 import com.springpractise.managementinformationsystem.service.StudentDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -117,7 +118,7 @@ public class StudentController {
      * @throws BadRequestException
      */
     @PostMapping(value = "/newstudents")
-    public ResponseEntity<List<StudentDetails>> createNewStudents(@RequestBody List<NewStudentRequest> newStudents) throws BadRequestException {
+    public ResponseEntity<List<StudentDetails>> createNewStudents(@RequestBody @Valid List<NewStudentRequest> newStudents) throws BadRequestException {
 
         for (NewStudentRequest newStudent : newStudents) {
 
