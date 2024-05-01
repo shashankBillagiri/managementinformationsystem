@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 
 @RequiredArgsConstructor
 @Service
 public class StudentDetailsService {
 
     private final StudentDetailsRepository studentDetailsRepository;
+
+    Random randomStudentID = new Random();
 
 //    public StudentDetailsService(StudentDetailsRepository studentDetailsRepository) {
 //        this.studentDetailsRepository = studentDetailsRepository;
@@ -25,11 +29,9 @@ public class StudentDetailsService {
     public List<StudentDetails> createNewStudents(List<NewStudentRequest> NewStudentRequests) {
 
         List<StudentDetails> studentDetails = new ArrayList<>();
-
         for (NewStudentRequest NewStudentRequest : NewStudentRequests) {
-
             StudentDetails studentDetailsObject = StudentDetails
-                    .build(NewStudentRequest.getId(), NewStudentRequest.getFirstName(), NewStudentRequest.getLastName(), NewStudentRequest.getGender(), NewStudentRequest.getAge(), NewStudentRequest.getEmail(), NewStudentRequest.getContactNumber(), NewStudentRequest.getAddressLine1(), NewStudentRequest.getAddressLine2(), NewStudentRequest.getAddressLine3(), NewStudentRequest.getState(), NewStudentRequest.getZipCode(), NewStudentRequest.getCourse(), 1, Instant.now());
+                    .build(NewStudentRequest.getId(), NewStudentRequest.getFirstName(), NewStudentRequest.getLastName(), NewStudentRequest.getGender(), NewStudentRequest.getAge(), NewStudentRequest.getEmail(), NewStudentRequest.getContactNumber(), NewStudentRequest.getAddressLine1(), NewStudentRequest.getAddressLine2(), NewStudentRequest.getAddressLine3(), NewStudentRequest.getState(), NewStudentRequest.getZipCode(), NewStudentRequest.getCourse(), randomStudentID.nextInt(), Instant.now());
 
             studentDetails.add(studentDetailsObject);
         }

@@ -33,7 +33,7 @@ public class ValidationExceptionHandler {
     }
 
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({StudentsNotFoundException.class})
     public Map<String, String> handleBusinessException(StudentsNotFoundException ex) {
         Map<String, String> errorMap = new HashMap<>();
