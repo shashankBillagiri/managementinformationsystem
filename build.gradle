@@ -29,7 +29,7 @@ dependencies {
     // the below module will provide libraries like JUnit, Spring Test, AssertJ, Hamcrest, Mockito, JSONassert, JsonPath
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'com.h2database:h2'
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.44'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '8.0.1.Final'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '3.1.4'
